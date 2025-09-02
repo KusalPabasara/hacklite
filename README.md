@@ -2,13 +2,14 @@
 
 A comprehensive career guidance platform that helps users discover their ideal career path through intelligent quizzes, personalized roadmaps, and expert mentorship.
 
-## 🚀 Features
+## 🚀 Latest Updates & Fixes
 
-### ✅ **Fixed Issues (Latest Update)**
-- **Registration System**: Fixed user registration with proper authentication
-- **Quiz Intelligence**: Enhanced quiz system with accurate career recommendations
-- **Roadmap Functionality**: Fixed roadmap system with proper step tracking
-- **Database Integration**: Improved PostgreSQL connections and error handling
+### ✅ **Issues Resolved (Latest Update)**
+- **Registration System**: Fixed user registration with proper authentication and database integration
+- **Quiz Intelligence**: Completely overhauled quiz system with intelligent career recommendations (no longer always suggests nursing)
+- **Roadmap Functionality**: Fixed roadmap system with proper step tracking and career progression
+- **Database Integration**: Improved PostgreSQL connections with proper error handling
+- **Frontend/Backend Sync**: Resolved merge conflicts and ensured both servers run properly
 
 ### 🎯 **Core Features**
 - **Smart Career Quizzes**: Intelligent assessment that analyzes answers to recommend appropriate careers
