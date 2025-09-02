@@ -85,3 +85,6 @@ jspm_packages/
 
 # DynamoDB Local files
 .dynamodb/
+
+# Old frontend directory (embedded git repo)
+old-frontend/
