@@ -126,24 +126,190 @@ Start the frontend development server:
 npm run dev
 ```
 
-## 🗄️ Database Setup
+## 🗄️ Complete PostgreSQL Database Setup
 
-### PostgreSQL Database
-```sql
--- Create database
-createdb metamind_db
+### Quick Setup Commands
+```bash
+# 1. Create PostgreSQL user and database
+sudo -u postgres createuser --interactive myuser
+sudo -u postgres createdb mydb
 
--- The application will automatically create tables on first run
+# 2. Set password for user (when prompted, enter: mypassword)
+sudo -u postgres psql -c "ALTER USER myuser PASSWORD 'mypassword';"
+
+# 3. Grant privileges
+sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE mydb TO myuser;"
 ```
 
-### Key Tables
-- `users` - User accounts and authentication
-- `careers` - Career information and roadmaps
-- `quizzes` - Quiz questions and structure
+### Complete Database Schema Setup
+```sql
+-- Connect to database
+psql -U myuser -d mydb -h localhost
+
+-- Enable UUID extension
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+-- 1. Users table
+CREATE TABLE users (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    name TEXT NOT NULL,
+    email TEXT NOT NULL UNIQUE,
+    password TEXT NOT NULL,
+    role TEXT DEFAULT 'student',
+    language TEXT DEFAULT 'en'
+);
+
+-- 2. Careers table
+CREATE TABLE careers (
+    id SERIAL PRIMARY KEY,
+    title TEXT NOT NULL,
+    category TEXT,
+    description TEXT,
+    roadmap JSONB
+);
+
+-- 3. Quizzes table
+CREATE TABLE quizzes (
+    id SERIAL PRIMARY KEY,
+    type TEXT,
+    title TEXT,
+    questions JSONB
+);
+
+-- 4. Results table
+CREATE TABLE results (
+    id SERIAL PRIMARY KEY,
+    quiz_id INTEGER REFERENCES quizzes(id),
+    user_id UUID REFERENCES users(id),
+    answers JSONB,
+    suggestions TEXT[]
+);
+
+-- 5. User Roadmaps table
+CREATE TABLE user_roadmaps (
+    id SERIAL PRIMARY KEY,
+    user_id UUID REFERENCES users(id),
+    career_id INTEGER REFERENCES careers(id),
+    current_step INTEGER DEFAULT 0,
+    completed BOOLEAN DEFAULT false,
+    roadmap_override JSONB
+);
+
+-- 6. Mentors table
+CREATE TABLE mentors (
+    id SERIAL PRIMARY KEY,
+    name TEXT NOT NULL,
+    bio TEXT,
+    expertise TEXT[],
+    photo_url TEXT
+);
+
+-- 7. Mentor Requests table
+CREATE TABLE mentor_requests (
+    id SERIAL PRIMARY KEY,
+    user_id UUID REFERENCES users(id),
+    mentor_id INTEGER REFERENCES mentors(id),
+    note TEXT,
+    created_at TIMESTAMP DEFAULT now()
+);
+
+-- 8. Success Stories table
+CREATE TABLE success_stories (
+    id SERIAL PRIMARY KEY,
+    user_id UUID REFERENCES users(id),
+    title TEXT,
+    story TEXT,
+    career TEXT,
+    created_at TIMESTAMP DEFAULT now()
+);
+
+-- 9. Leaderboard table
+CREATE TABLE leaderboard (
+    id SERIAL PRIMARY KEY,
+    user_id UUID REFERENCES users(id),
+    score INTEGER DEFAULT 0,
+    rank INTEGER,
+    career TEXT
+);
+
+-- 10. Progress table
+CREATE TABLE progress (
+    id SERIAL PRIMARY KEY,
+    user_id UUID REFERENCES users(id),
+    career_id INTEGER REFERENCES careers(id),
+    step_completed INTEGER DEFAULT 0,
+    total_steps INTEGER,
+    completed_at TIMESTAMP DEFAULT now()
+);
+
+-- 11. Career Templates table
+CREATE TABLE career_templates (
+    id SERIAL PRIMARY KEY,
+    title TEXT NOT NULL,
+    category TEXT,
+    template_data JSONB
+);
+```
+
+### Sample Data Insertion
+```sql
+-- Insert sample careers
+INSERT INTO careers (title, category, description, roadmap) VALUES
+('Software Engineer', 'Technology', 'Build, test, and maintain software systems.', '["Learn JavaScript", "Learn Git & GitHub", "Build 3 projects", "Apply for internships"]'),
+('Nurse', 'Healthcare', 'Provide care to patients in hospitals or clinics.', '["A/L Biology", "Nursing school exam", "Training", "MOH Registration"]'),
+('Data Scientist', 'Technology', 'Analyze data to extract insights', '[{"step": 1, "title": "Learn Statistics", "description": "Understand probability and statistics"}, {"step": 2, "title": "Programming Skills", "description": "Learn Python or R"}, {"step": 3, "title": "Machine Learning", "description": "Learn ML algorithms and libraries"}, {"step": 4, "title": "Data Visualization", "description": "Learn tools like Tableau or Matplotlib"}, {"step": 5, "title": "Real Projects", "description": "Work on data science projects"}]'),
+('UI/UX Designer', 'Design', 'Create user-friendly interfaces', '[{"step": 1, "title": "Design Principles", "description": "Learn color theory and typography"}, {"step": 2, "title": "Design Tools", "description": "Master Figma, Sketch, or Adobe XD"}, {"step": 3, "title": "User Research", "description": "Learn user testing and research methods"}, {"step": 4, "title": "Prototyping", "description": "Create interactive prototypes"}, {"step": 5, "title": "Portfolio", "description": "Build a strong design portfolio"}]'),
+('Software Developer', 'Technology', 'Build applications and software solutions', '[{"step": 1, "title": "Learn Programming Basics", "description": "Start with HTML, CSS, and JavaScript"}, {"step": 2, "title": "Choose a Framework", "description": "Learn React, Vue, or Angular"}, {"step": 3, "title": "Backend Development", "description": "Learn Node.js, Python, or Java"}, {"step": 4, "title": "Database Management", "description": "Learn SQL and database design"}, {"step": 5, "title": "Build Projects", "description": "Create portfolio projects"}]');
+
+-- Insert sample quizzes
+INSERT INTO quizzes (type, title, questions) VALUES
+('interest', 'Career Interest Quiz', '[{"q": "Do you like computers?", "options": ["Yes", "No"]}, {"q": "Do you enjoy helping people?", "options": ["Yes", "No"]}, {"q": "Do you like working with tools?", "options": ["Yes", "No"]}, {"q": "Do you enjoy creativity?", "options": ["Yes", "No"]}]'),
+('interest', 'Find Your Fit Quiz', '[{"q": "Do you enjoy solving problems?", "options": ["Yes", "No"]}, {"q": "Do you like helping people?", "options": ["Yes", "No"]}, {"q": "Are you creative?", "options": ["Yes", "No"]}]'),
+('career', 'Career Interest Assessment', '[{"q": "What type of work environment do you prefer?", "options": ["Collaborative team setting", "Independent work", "Creative studio", "Corporate office"]}, {"q": "Which activity interests you most?", "options": ["Problem solving", "Creative design", "Data analysis", "Helping others"]}, {"q": "What motivates you at work?", "options": ["Financial success", "Making a difference", "Learning new things", "Recognition"]}]'),
+('technical', 'Technical Skills Assessment', '[{"q": "How comfortable are you with programming?", "options": ["Beginner", "Intermediate", "Advanced", "Expert"]}, {"q": "Which technology interests you most?", "options": ["Web Development", "Mobile Apps", "Data Science", "AI/ML"]}]');
+
+-- Insert sample mentors
+INSERT INTO mentors (name, bio, expertise, photo_url) VALUES
+('Dr. Sarah Johnson', 'Senior Software Engineer with 10+ years experience in full-stack development', '{"JavaScript", "React", "Node.js", "Python"}', 'https://example.com/sarah.jpg'),
+('Prof. Michael Chen', 'Data Science expert and university professor', '{"Python", "Machine Learning", "Statistics", "R"}', 'https://example.com/michael.jpg'),
+('Lisa Rodriguez', 'UI/UX Designer with expertise in user research and design systems', '{"Figma", "User Research", "Prototyping", "Design Systems"}', 'https://example.com/lisa.jpg');
+
+-- Insert sample success stories
+INSERT INTO success_stories (user_id, title, story, career) VALUES
+(gen_random_uuid(), 'From Zero to Software Engineer', 'Started with no coding experience and now working at a tech company', 'Software Engineer'),
+(gen_random_uuid(), 'Nursing Journey', 'Overcame challenges to become a registered nurse', 'Nurse'),
+(gen_random_uuid(), 'Data Science Success', 'Transitioned from business to data science career', 'Data Scientist');
+```
+
+### Environment Configuration
+Create a `.env` file in the backend directory:
+```env
+PORT=5000
+DATABASE_URL=postgresql://myuser:mypassword@localhost:5432/mydb
+JWT_SECRET=your_jwt_secret_here
+NODE_ENV=development
+```
+
+### Database Verification
+```bash
+# Test database connection
+psql -U myuser -d mydb -h localhost -c "SELECT COUNT(*) FROM careers;"
+psql -U myuser -d mydb -h localhost -c "SELECT COUNT(*) FROM quizzes;"
+psql -U myuser -d mydb -h localhost -c "SELECT COUNT(*) FROM mentors;"
+```
+
+### Key Tables Summary
+- `users` - User accounts and authentication (UUID primary key)
+- `careers` - Career information and roadmaps (7 sample careers)
+- `quizzes` - Quiz questions and structure (4 sample quizzes)
 - `results` - Quiz results and recommendations
 - `user_roadmaps` - User's career progress tracking
-- `mentors` - Mentor profiles and availability
-- `success_stories` - Inspirational career stories
+- `mentors` - Mentor profiles and availability (3 sample mentors)
+- `success_stories` - Inspirational career stories (3 sample stories)
+- `leaderboard` - User rankings and scores
+- `progress` - User progress tracking
+- `mentor_requests` - Mentor connection requests
+- `career_templates` - Career template data
 
 ## 🔧 API Endpoints
 
