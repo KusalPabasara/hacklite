@@ -1,18 +1,43 @@
 import { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 import Navbar from "../components/Navbar";
 import { AuthContext } from "../context/AuthContext";
+import api from "../utils/api";
 
 const Dashboard = () => {
   const { t } = useTranslation();
-  const { user } = useContext(AuthContext);
+  const { user, markQuestionnaireCompleted } = useContext(AuthContext);
+  const location = useLocation();
   const [stats, setStats] = useState({
     quizzesCompleted: 2,
     careerGoals: 1,
     roadmapProgress: 65,
     mentorConnections: 3
   });
+  const [recommendations, setRecommendations] = useState([]);
+  const [showRecommendations, setShowRecommendations] = useState(false);
+  const [quizResults, setQuizResults] = useState(null);
+  const [showQuizResults, setShowQuizResults] = useState(false);
+
+  useEffect(() => {
+    // Check if user just completed questionnaire
+    if (location.state?.questionnaireCompleted && location.state?.recommendations) {
+      setRecommendations(location.state.recommendations);
+      setShowRecommendations(true);
+      markQuestionnaireCompleted();
+      // Clear the state to prevent showing again on refresh
+      window.history.replaceState({}, document.title);
+    }
+    
+    // Check if user just completed quiz
+    if (location.state?.quizCompleted && location.state?.quizResults) {
+      setQuizResults(location.state.quizResults);
+      setShowQuizResults(true);
+      // Clear the state to prevent showing again on refresh
+      window.history.replaceState({}, document.title);
+    }
+  }, [location.state, markQuestionnaireCompleted]);
 
   const quickActions = [
     {
@@ -59,7 +84,7 @@ const Dashboard = () => {
     <>
       <Navbar />
       <div className="min-h-screen bg-slate-50">
-        <style jsx>{`
+        <style jsx={true}>{`
           @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
           
           * {
@@ -141,6 +166,143 @@ const Dashboard = () => {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          {/* Career Recommendations Modal */}
+          {showRecommendations && recommendations.length > 0 && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+              <div className="bg-white rounded-3xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+                <div className="p-8">
+                  <div className="text-center mb-8">
+                    <div className="text-6xl mb-4">🎉</div>
+                    <h2 className="text-3xl font-bold text-slate-900 mb-2">Perfect Match Found!</h2>
+                    <p className="text-slate-600">Based on your questionnaire, we found the ideal career paths for you</p>
+                  </div>
+                  
+                  <div className="space-y-6">
+                    {recommendations.map((rec, index) => (
+                      <div key={rec.career_id} className="bg-gradient-to-r from-cyan-50 to-teal-50 rounded-2xl p-6 border border-cyan-200">
+                        <div className="flex items-start justify-between">
+                          <div className="flex-1">
+                            <div className="flex items-center mb-2">
+                              <span className="bg-cyan-600 text-white text-sm font-bold px-3 py-1 rounded-full mr-3">
+                                #{index + 1}
+                              </span>
+                              <h3 className="text-xl font-bold text-slate-900">{rec.career_title}</h3>
+                            </div>
+                            <p className="text-slate-600 mb-3">{rec.description}</p>
+                            <div className="flex items-center">
+                              <span className="text-sm text-slate-500 mr-2">Match Score:</span>
+                              <div className="flex items-center">
+                                <div className="w-24 bg-slate-200 rounded-full h-2 mr-2">
+                                  <div 
+                                    className="bg-cyan-600 h-2 rounded-full transition-all duration-1000"
+                                    style={{ width: `${rec.match_score * 100}%` }}
+                                  ></div>
+                                </div>
+                                <span className="text-sm font-bold text-cyan-600">
+                                  {Math.round(rec.match_score * 100)}%
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                          <Link
+                            to={`/roadmap/${rec.career_id}`}
+                            className="ml-4 bg-cyan-600 text-white px-6 py-2 rounded-lg hover:bg-cyan-700 transition-colors font-medium"
+                          >
+                            View Roadmap
+                          </Link>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  <div className="flex justify-center mt-8 space-x-4">
+                    <button
+                      onClick={() => setShowRecommendations(false)}
+                      className="bg-slate-200 text-slate-700 px-6 py-3 rounded-lg hover:bg-slate-300 transition-colors font-medium"
+                    >
+                      Close
+                    </button>
+                    <Link
+                      to="/explore-careers"
+                      className="bg-cyan-600 text-white px-6 py-3 rounded-lg hover:bg-cyan-700 transition-colors font-medium"
+                    >
+                      Explore All Careers
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Quiz Results Modal */}
+          {showQuizResults && quizResults && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+              <div className="bg-white rounded-3xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+                <div className="p-8">
+                  <div className="text-center mb-8">
+                    <div className="text-6xl mb-4">🎯</div>
+                    <h2 className="text-3xl font-bold text-slate-900 mb-2">Quiz Results!</h2>
+                    <p className="text-slate-600">Based on your answers, here's your career recommendation</p>
+                  </div>
+                  
+                  <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-8 border border-purple-200">
+                    <div className="text-center mb-6">
+                      <h3 className="text-2xl font-bold text-slate-900 mb-2">
+                        {quizResults.suggested_career}
+                      </h3>
+                      <span className="inline-block bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-sm font-medium">
+                        {quizResults.career_category}
+                      </span>
+                    </div>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                      <div className="text-center">
+                        <div className="text-2xl font-bold text-blue-600 mb-2">{quizResults.scores.technology}</div>
+                        <div className="text-sm text-slate-600">Technology Score</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-2xl font-bold text-green-600 mb-2">{quizResults.scores.healthcare}</div>
+                        <div className="text-sm text-slate-600">Healthcare Score</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-2xl font-bold text-pink-600 mb-2">{quizResults.scores.design}</div>
+                        <div className="text-sm text-slate-600">Design Score</div>
+                      </div>
+                    </div>
+                    
+                    <div className="text-center">
+                      <p className="text-slate-700 mb-4">
+                        Your quiz results show a strong preference for <strong>{quizResults.career_category.toLowerCase()}</strong> careers. 
+                        We recommend exploring <strong>{quizResults.suggested_career}</strong> as your next step!
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex justify-center mt-8 space-x-4">
+                    <button
+                      onClick={() => setShowQuizResults(false)}
+                      className="bg-slate-200 text-slate-700 px-6 py-3 rounded-lg hover:bg-slate-300 transition-colors font-medium"
+                    >
+                      Close
+                    </button>
+                    <Link
+                      to="/explore-careers"
+                      className="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors font-medium"
+                    >
+                      Explore Careers
+                    </Link>
+                    <Link
+                      to="/roadmap"
+                      className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium"
+                    >
+                      View Roadmap
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* Stats Cards with Glassmorphism */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12 -mt-16 relative z-20">
             <div className="bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl p-6 border border-white/20 card-hover">

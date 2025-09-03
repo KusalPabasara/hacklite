@@ -7,6 +7,7 @@ const Questionnaire = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [questions, setQuestions] = useState([]);
+  const [filteredQuestions, setFilteredQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState({});
   const [loading, setLoading] = useState(true);
@@ -24,6 +25,7 @@ const Questionnaire = () => {
       console.log('✅ Questions received:', response.data);
       console.log('📝 First question structure:', response.data[0]);
       setQuestions(response.data);
+      setFilteredQuestions(response.data);
       setLoading(false);
     } catch (error) {
       console.error('❌ Error fetching questions:', error);
@@ -32,15 +34,44 @@ const Questionnaire = () => {
     }
   };
 
+  // Filter questions based on previous answers
+  const filterQuestions = (newAnswers) => {
+    const updatedAnswers = { ...answers, ...newAnswers };
+    
+    // Check if user has completed A/L
+    const hasCompletedALevels = updatedAnswers[1] === 'alevels' || updatedAnswers[1] === 'degree';
+    
+    const filtered = questions.filter(question => {
+      // Always show education level question (id: 1)
+      if (question.id === 1) return true;
+      
+      // Always show O/L subjects question (id: 2)
+      if (question.id === 2) return true;
+      
+      // Only show A/L subjects question if user completed A/L
+      if (question.id === 3) return hasCompletedALevels;
+      
+      // Show all other questions
+      return true;
+    });
+    
+    setFilteredQuestions(filtered);
+    return filtered;
+  };
+
   const handleAnswerChange = (questionId, answer) => {
-    setAnswers(prev => ({
-      ...prev,
+    const newAnswers = {
+      ...answers,
       [questionId]: answer
-    }));
+    };
+    setAnswers(newAnswers);
+    
+    // Filter questions based on new answer
+    filterQuestions(newAnswers);
   };
 
   const handleNext = () => {
-    if (currentQuestion < questions.length - 1) {
+    if (currentQuestion < filteredQuestions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
     }
   };
@@ -81,13 +112,13 @@ const Questionnaire = () => {
   };
 
   const isCurrentQuestionAnswered = () => {
-    const question = questions[currentQuestion];
+    const question = filteredQuestions[currentQuestion];
     if (!question) return false;
     return answers[question.id] !== undefined && answers[question.id] !== '';
   };
 
   const isAllQuestionsAnswered = () => {
-    return questions.every(question => 
+    return filteredQuestions.every(question => 
       answers[question.id] !== undefined && answers[question.id] !== ''
     );
   };
@@ -121,10 +152,10 @@ const Questionnaire = () => {
     );
   }
 
-  const question = questions[currentQuestion];
+  const question = filteredQuestions[currentQuestion];
   if (!question) return null;
 
-  const progress = ((currentQuestion + 1) / questions.length) * 100;
+  const progress = ((currentQuestion + 1) / filteredQuestions.length) * 100;
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -137,7 +168,7 @@ const Questionnaire = () => {
               <p className="text-slate-600 mt-1">Help us find the perfect career path for you</p>
             </div>
             <div className="text-right">
-              <div className="text-sm text-slate-500">Question {currentQuestion + 1} of {questions.length}</div>
+              <div className="text-sm text-slate-500">Question {currentQuestion + 1} of {filteredQuestions.length}</div>
               <div className="w-32 bg-slate-200 rounded-full h-2 mt-2">
                 <div 
                   className="bg-cyan-600 h-2 rounded-full transition-all duration-300"
@@ -248,19 +279,24 @@ const Questionnaire = () => {
 
         {/* Progress Indicator */}
         <div className="mt-8 flex justify-center">
-          <div className="flex space-x-2">
-            {questions.map((_, index) => (
-              <div
-                key={index}
-                className={`w-3 h-3 rounded-full transition-colors ${
-                  index < currentQuestion
-                    ? 'bg-cyan-600'
-                    : index === currentQuestion
-                    ? 'bg-cyan-400'
-                    : 'bg-slate-300'
-                }`}
-              ></div>
-            ))}
+          <div className="text-center">
+            <div className="flex space-x-2 mb-4">
+              {filteredQuestions.map((_, index) => (
+                <div
+                  key={index}
+                  className={`w-3 h-3 rounded-full transition-colors ${
+                    index < currentQuestion
+                      ? 'bg-cyan-600'
+                      : index === currentQuestion
+                      ? 'bg-cyan-400'
+                      : 'bg-slate-300'
+                  }`}
+                ></div>
+              ))}
+            </div>
+            <p className="text-sm text-slate-500">
+              {filteredQuestions.length} questions • {filteredQuestions.length - currentQuestion - 1} remaining
+            </p>
           </div>
         </div>
       </div>
