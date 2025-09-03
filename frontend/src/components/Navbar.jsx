@@ -5,7 +5,7 @@ import { AuthContext } from "../context/AuthContext";
 import Logo from "../components/Logo";
 
 const Navbar = () => {
-  const { user, logout } = useContext(AuthContext);
+  const { user, logout, getAvatarData } = useContext(AuthContext);
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
@@ -13,18 +13,12 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
   const [currentLang, setCurrentLang] = useState(i18n.language);
+  const [googleTranslateLang, setGoogleTranslateLang] = useState('en');
+  const [loadingLang, setLoadingLang] = useState(false);
   const dropdownRef = useRef(null);
   
-  // Function to get initials from full name
-  const getInitial = (name) => {
-    if (!name) return 'U';
-    const names = name.trim().split(' ');
-    if (names.length > 1) {
-      // Return first letter of first name and last name
-      return `${names[0].charAt(0)}${names[names.length - 1].charAt(0)}`.toUpperCase();
-    }
-    return name.charAt(0).toUpperCase();
-  };
+  // Get avatar data for display
+  const avatarData = getAvatarData();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,6 +40,40 @@ const Navbar = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // Google Translate control functions
+  useEffect(() => {
+    const selectedLang = localStorage.getItem("googleLang");
+    if (selectedLang) {
+      setGoogleTranslateLang(selectedLang);
+      setTimeout(() => {
+        const select = document.querySelector("select.goog-te-combo");
+        if (select) {
+          select.value = selectedLang;
+          select.dispatchEvent(new Event("change"));
+        }
+      }, 1000);
+    }
+  }, []);
+
+  const waitForTranslateDropdown = (languageCode) => {
+    setLoadingLang(true);
+    const interval = setInterval(() => {
+      const select = document.querySelector("select.goog-te-combo");
+      if (select) {
+        select.value = languageCode;
+        select.dispatchEvent(new Event("change"));
+        localStorage.setItem("googleLang", languageCode);
+        setGoogleTranslateLang(languageCode);
+        setLoadingLang(false);
+        clearInterval(interval);
+      }
+    }, 300);
+  };
+
+  const switchGoogleTranslateLang = (lang) => {
+    waitForTranslateDropdown(lang);
+  };
+
   const handleLogout = () => {
     logout();
     navigate("/login");
@@ -63,6 +91,7 @@ const Navbar = () => {
     { path: "/quizzes", label: t('quizzes'), icon: "🧠" },
     { path: "/explore-careers", label: t('careers'), icon: "🔍" },
     { path: "/roadmap", label: t('roadmap'), icon: "🗺️" },
+    { path: "/chat", label: "Assistant", icon: "🤖" },
     { path: "/mentors", label: t('mentors'), icon: "👥" },
     { path: "/inspiration", label: t('stories'), icon: "✨" },
     { path: "/leaderboard", label: t('leaderboard'), icon: "🏆" }
@@ -74,12 +103,8 @@ const Navbar = () => {
 
   return (
     <>
-      <style jsx>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-        
-        * {
-          font-family: 'Inter', sans-serif;
-        }
+      <style>{`
+        /* Professional Navbar Styling */
         
         @keyframes nav-slide-down {
           from { transform: translateY(-100%); opacity: 0; }
@@ -169,6 +194,19 @@ const Navbar = () => {
             padding: 0.5rem;
           }
         }
+        
+        /* Google Translate Widget Styling */
+        .translate-widget {
+          border-radius: 8px;
+          overflow: hidden;
+        }
+        
+        .translate-widget-mobile {
+          border-radius: 8px;
+          overflow: hidden;
+        }
+        
+        /* Google Translate elements are now hidden globally in index.css */
       `}</style>
 
       <nav className={`nav-container fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'glass-nav scrolled' : 'glass-nav'}`}>
@@ -181,7 +219,7 @@ const Navbar = () => {
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center flex-1 justify-center px-4">
-              <div className="flex items-center space-x-1">
+              <div className="flex items-center space-x-1 flex-wrap justify-center">
                 {navLinks.map((link) => (
                   <Link
                     key={link.path}
@@ -189,9 +227,10 @@ const Navbar = () => {
                     className={`nav-link px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
                       isActiveLink(link.path) ? 'active' : ''
                     }`}
+                    title={link.label}
                   >
                     <span className="mr-1.5">{link.icon}</span>
-                    {link.label}
+                    <span className="truncate">{link.label}</span>
                   </Link>
                 ))}
               </div>
@@ -199,25 +238,44 @@ const Navbar = () => {
 
             {/* User Menu & Language Switcher */}
             <div className="hidden lg:flex items-center space-x-4">
-              {/* Language Switcher */}
+              {/* Google Translate Toggle Buttons */}
               <div className="flex items-center space-x-1 bg-slate-800/50 rounded-lg p-1">
                 <button
-                  onClick={() => changeLanguage('en')}
-                  className={`lang-btn px-3 py-1.5 rounded-md text-sm font-medium ${
-                    currentLang === 'en' ? 'active' : 'text-gray-300 hover:text-white'
-                  }`}
+                  onClick={() => switchGoogleTranslateLang('en')}
+                  disabled={loadingLang}
+                  className={`lang-btn px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-300 ${
+                    googleTranslateLang === 'en' ? 'active' : 'text-gray-300 hover:text-white'
+                  } ${loadingLang ? 'opacity-50 cursor-not-allowed' : ''}`}
+                  title="English"
                 >
-                  EN
+                  <span className="truncate">🇬🇧 English</span>
                 </button>
                 <button
-                  onClick={() => changeLanguage('si')}
-                  className={`lang-btn px-3 py-1.5 rounded-md text-sm font-medium ${
-                    currentLang === 'si' ? 'active' : 'text-gray-300 hover:text-white'
-                  }`}
+                  onClick={() => switchGoogleTranslateLang('si')}
+                  disabled={loadingLang}
+                  className={`lang-btn px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-300 ${
+                    googleTranslateLang === 'si' ? 'active' : 'text-gray-300 hover:text-white'
+                  } ${loadingLang ? 'opacity-50 cursor-not-allowed' : ''}`}
+                  title="සිංහල"
                 >
-                  සිං
+                  <span className="truncate">🇱🇰 සිංහල</span>
+                </button>
+                <button
+                  onClick={() => switchGoogleTranslateLang('ta')}
+                  disabled={loadingLang}
+                  className={`lang-btn px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-300 ${
+                    googleTranslateLang === 'ta' ? 'active' : 'text-gray-300 hover:text-white'
+                  } ${loadingLang ? 'opacity-50 cursor-not-allowed' : ''}`}
+                  title="தமிழ்"
+                >
+                  <span className="truncate">🇱🇰 தமிழ்</span>
                 </button>
               </div>
+              {loadingLang && (
+                <div className="text-xs text-cyan-400 animate-pulse">
+                  Translating...
+                </div>
+              )}
 
               {user ? (
                 <div className="relative" ref={dropdownRef}>
@@ -225,8 +283,12 @@ const Navbar = () => {
                     onClick={() => setIsUserDropdownOpen(!isUserDropdownOpen)}
                     className="flex items-center space-x-3 hover:bg-slate-800/50 rounded-lg px-3 py-2 transition-all duration-300"
                   >
-                    <div className="user-avatar w-10 h-10 rounded-full flex items-center justify-center text-white font-bold shadow-lg text-sm">
-                      {getInitial(user.name)}
+                    <div className="user-avatar w-10 h-10 rounded-full flex items-center justify-center text-white font-bold shadow-lg text-sm overflow-hidden">
+                      {avatarData.type === 'image' ? (
+                        <img src={avatarData.data} alt="Profile" className="w-full h-full object-cover" />
+                      ) : (
+                        <span>{avatarData.data}</span>
+                      )}
                     </div>
                     <span className="text-gray-200 text-sm font-medium hidden xl:block">{user.name}</span>
                     <svg className={`w-4 h-4 text-gray-400 transition-transform duration-200 ${isUserDropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -318,25 +380,44 @@ const Navbar = () => {
         {isMobileMenuOpen && (
           <div className="lg:hidden bg-slate-900/98 backdrop-blur-xl border-t border-slate-800">
             <div className="px-4 py-6 space-y-2 max-h-[calc(100vh-4rem)] overflow-y-auto">
-              {/* Language Switcher Mobile */}
-              <div className="flex items-center justify-center space-x-2 mb-4 bg-slate-800/50 rounded-lg p-2">
+              {/* Google Translate Toggle Buttons Mobile */}
+              <div className="flex items-center justify-center space-x-1 mb-4 bg-slate-800/50 rounded-lg p-2">
                 <button
-                  onClick={() => changeLanguage('en')}
-                  className={`lang-btn px-4 py-2 rounded-md text-sm font-medium flex-1 ${
-                    currentLang === 'en' ? 'active' : 'text-gray-300'
-                  }`}
+                  onClick={() => switchGoogleTranslateLang('en')}
+                  disabled={loadingLang}
+                  className={`lang-btn px-3 py-2 rounded-md text-sm font-medium flex-1 transition-all duration-300 ${
+                    googleTranslateLang === 'en' ? 'active' : 'text-gray-300'
+                  } ${loadingLang ? 'opacity-50 cursor-not-allowed' : ''}`}
+                  title="English"
                 >
-                  English
+                  <span className="truncate">🇬🇧 English</span>
                 </button>
                 <button
-                  onClick={() => changeLanguage('si')}
-                  className={`lang-btn px-4 py-2 rounded-md text-sm font-medium flex-1 ${
-                    currentLang === 'si' ? 'active' : 'text-gray-300'
-                  }`}
+                  onClick={() => switchGoogleTranslateLang('si')}
+                  disabled={loadingLang}
+                  className={`lang-btn px-3 py-2 rounded-md text-sm font-medium flex-1 transition-all duration-300 ${
+                    googleTranslateLang === 'si' ? 'active' : 'text-gray-300'
+                  } ${loadingLang ? 'opacity-50 cursor-not-allowed' : ''}`}
+                  title="සිංහල"
                 >
-                  සිංහල
+                  <span className="truncate">🇱🇰 සිංහල</span>
+                </button>
+                <button
+                  onClick={() => switchGoogleTranslateLang('ta')}
+                  disabled={loadingLang}
+                  className={`lang-btn px-3 py-2 rounded-md text-sm font-medium flex-1 transition-all duration-300 ${
+                    googleTranslateLang === 'ta' ? 'active' : 'text-gray-300'
+                  } ${loadingLang ? 'opacity-50 cursor-not-allowed' : ''}`}
+                  title="தமிழ்"
+                >
+                  <span className="truncate">🇱🇰 தமிழ்</span>
                 </button>
               </div>
+              {loadingLang && (
+                <div className="text-center text-xs text-cyan-400 animate-pulse mb-4">
+                  Translating...
+                </div>
+              )}
 
               {navLinks.map((link) => (
                 <Link
@@ -356,8 +437,12 @@ const Navbar = () => {
                 {user ? (
                   <>
                     <div className="flex items-center space-x-3 px-4 py-3 mb-2">
-                      <div className="user-avatar w-12 h-12 rounded-full flex items-center justify-center text-white font-bold shadow-lg">
-                        {getInitial(user.name)}
+                      <div className="user-avatar w-12 h-12 rounded-full flex items-center justify-center text-white font-bold shadow-lg overflow-hidden">
+                        {avatarData.type === 'image' ? (
+                          <img src={avatarData.data} alt="Profile" className="w-full h-full object-cover" />
+                        ) : (
+                          <span>{avatarData.data}</span>
+                        )}
                       </div>
                       <div>
                         <p className="text-white font-medium">{user.name}</p>
@@ -424,9 +509,6 @@ const Navbar = () => {
           </div>
         )}
       </nav>
-
-      {/* Spacer */}
-      <div className="h-16"></div>
     </>
   );
 };

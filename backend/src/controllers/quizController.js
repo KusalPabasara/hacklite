@@ -82,19 +82,19 @@ const submitQuiz = async (req, res) => {
         }
       });
       
-      // Determine the best career category
-      let suggestedCategory = 'Technology'; // default
-      let suggestedCareer = 'Software Engineer';
+      // Determine the best career category based on new careers
+      let suggestedCategory = 'Technical'; // default
+      let suggestedCareer = 'VTA - Vocational Training Authority';
       
       if (healthcareScore > techScore && healthcareScore > designScore) {
         suggestedCategory = 'Healthcare';
-        suggestedCareer = 'Nurse';
+        suggestedCareer = 'NTS - Nursing Training School';
       } else if (designScore > techScore && designScore > healthcareScore) {
-        suggestedCategory = 'Design';
-        suggestedCareer = 'UI/UX Designer';
+        suggestedCategory = 'Technical';
+        suggestedCareer = 'German Technical Training';
       } else if (techScore >= healthcareScore && techScore >= designScore) {
-        suggestedCategory = 'Technology';
-        suggestedCareer = techScore > 3 ? 'Data Scientist' : 'Software Engineer';
+        suggestedCategory = 'Technical';
+        suggestedCareer = techScore > 3 ? 'German Technical Training' : 'VTA - Vocational Training Authority';
       }
 
       await saveResult({ 

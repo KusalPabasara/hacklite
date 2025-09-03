@@ -37,21 +37,40 @@ const QuizTake = () => {
 
     setIsSubmitting(true);
     try {
+      console.log('🚀 Submitting quiz with answers:', answers);
       const res = await api.post(`/quizzes/${id}/submit`, { answers });
       console.log('✅ Quiz submitted successfully:', res.data);
       
-      // Navigate to dashboard with quiz results
-      navigate("/", { 
+      // Validate response data
+      if (!res.data || !res.data.suggested_career) {
+        throw new Error('Invalid response from server');
+      }
+      
+      // Create a mock recommendation object for quiz results
+      const mockRecommendation = {
+        career_id: null, // We'll need to find the career by title
+        career_title: res.data.suggested_career,
+        career_category: res.data.career_category,
+        match_score: 0.85 // Default high score for quiz results
+      };
+      
+      console.log('🎯 Navigating to careers with recommendation:', mockRecommendation);
+      
+      // Navigate to careers page with quiz results as recommendations
+      navigate("/explore-careers", { 
         state: { 
+          recommendations: [mockRecommendation],
           quizResults: res.data,
           suggestedCategory: res.data.career_category,
           suggestedCareer: res.data.suggested_career,
+          showRecommendations: true,
           quizCompleted: true
         } 
       });
     } catch (err) {
-      console.error("Error submitting quiz", err);
-      alert("There was an error submitting your quiz.");
+      console.error("❌ Error submitting quiz:", err);
+      console.error("❌ Error details:", err.response?.data || err.message);
+      alert(`There was an error submitting your quiz: ${err.response?.data?.error || err.message}`);
     } finally {
       setIsSubmitting(false);
     }
@@ -65,7 +84,7 @@ const QuizTake = () => {
     return (
       <>
         <Navbar />
-        <div className="min-h-screen bg-indigo-950 flex items-center justify-center">
+        <div className="min-h-screen bg-indigo-950 pt-16 flex items-center justify-center">
           <div className="text-center">
             <div className="w-20 h-20 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
             <p className="text-purple-300 text-lg">Loading Quiz...</p>
@@ -78,13 +97,9 @@ const QuizTake = () => {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-indigo-950">
-        <style jsx={true}>{`
-          @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap');
-          
-          * {
-            font-family: 'Lexend', sans-serif;
-          }
+      <div className="min-h-screen bg-indigo-950 pt-16">
+        <style>{`
+          /* Professional Quiz Take Styling */
           
           @keyframes question-slide {
             from { opacity: 0; transform: translateX(50px); }

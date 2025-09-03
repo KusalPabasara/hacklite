@@ -45,7 +45,7 @@ const Leaderboard = () => {
     return (
       <>
         <Navbar />
-        <div className="min-h-screen bg-slate-950 flex items-center justify-center">
+        <div className="min-h-screen bg-slate-950 pt-16 flex items-center justify-center">
           <div className="text-center">
             <div className="w-20 h-20 border-4 border-yellow-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
             <p className="text-yellow-300 text-lg">Loading leaderboard...</p>
@@ -58,13 +58,9 @@ const Leaderboard = () => {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-slate-950">
-        <style jsx>{`
-          @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
-          
-          * {
-            font-family: 'Orbitron', sans-serif;
-          }
+      <div className="min-h-screen bg-slate-950 pt-16">
+        <style>{`
+          /* Professional Leaderboard Styling */
           
           @keyframes trophy-bounce {
             0%, 100% { transform: translateY(0) rotate(0deg); }

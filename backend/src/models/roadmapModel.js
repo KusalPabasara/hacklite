@@ -38,31 +38,44 @@ const saveUserRoadmap = async (user_id, career_id, roadmap = null) => {
 };
 
 const getUserRoadmap = async (user_id) => {
-  // First check if user has a roadmap with a career_id
-  const result = await pool.query(`
-    SELECT ur.*, c.title, 
-      CASE
-        WHEN ur.roadmap_override IS NOT NULL THEN ur.roadmap_override
-        ELSE c.roadmap
-      END as roadmap
-    FROM user_roadmaps ur
-    JOIN careers c ON ur.career_id = c.id
-    WHERE ur.user_id = $1 AND ur.career_id IS NOT NULL
-  `, [user_id]);
+  try {
+    // First check if user has a roadmap with a career_id
+    const result = await pool.query(`
+      SELECT ur.*, c.title, 
+        CASE
+          WHEN ur.roadmap_override IS NOT NULL THEN ur.roadmap_override
+          ELSE c.roadmap
+        END as roadmap
+      FROM user_roadmaps ur
+      JOIN careers c ON ur.career_id = c.id
+      WHERE ur.user_id = $1 AND ur.career_id IS NOT NULL
+    `, [user_id]);
 
-  if (result.rows.length > 0) {
-    return result.rows[0];
+    if (result.rows.length > 0) {
+      return result.rows[0];
+    }
+
+    // If no roadmap with career_id, return a default structure
+    return {
+      user_id: user_id,
+      career_id: null,
+      current_step: 0,
+      completed: false,
+      title: null,
+      roadmap: null
+    };
+  } catch (error) {
+    console.error("Error in getUserRoadmap:", error);
+    // Return default structure on error
+    return {
+      user_id: user_id,
+      career_id: null,
+      current_step: 0,
+      completed: false,
+      title: null,
+      roadmap: null
+    };
   }
-
-  // If no roadmap with career_id, return a default structure
-  return {
-    user_id: user_id,
-    career_id: null,
-    current_step: 0,
-    completed: false,
-    title: null,
-    roadmap: null
-  };
 };
 
 const updateProgress = async (user_id, step) => {

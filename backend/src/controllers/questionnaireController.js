@@ -27,22 +27,26 @@ const submitAnswers = async (req, res) => {
     const { answers } = req.body;
     const userId = req.user.id;
 
+    console.log('📝 Questionnaire submission received:', { userId, answersCount: answers?.length });
+
     if (!answers || !Array.isArray(answers)) {
       return res.status(400).json({ error: 'Invalid answers format' });
     }
 
     // Save answers
     await saveQuestionnaireAnswers(userId, answers);
+    console.log('✅ Answers saved successfully');
 
     // Calculate career recommendations
     const recommendations = await calculateCareerRecommendations(userId);
+    console.log('🎯 Career recommendations calculated:', recommendations.length);
 
     res.json({
       message: 'Questionnaire submitted successfully',
       recommendations: recommendations.slice(0, 3) // Return top 3 recommendations
     });
   } catch (error) {
-    console.error('Error submitting questionnaire:', error);
+    console.error('❌ Error submitting questionnaire:', error);
     res.status(500).json({ error: 'Failed to submit questionnaire' });
   }
 };

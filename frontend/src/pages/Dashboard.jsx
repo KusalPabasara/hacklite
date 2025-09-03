@@ -83,13 +83,9 @@ const Dashboard = () => {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-slate-50">
-        <style jsx={true}>{`
-          @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
-          
-          * {
-            font-family: 'Space Grotesk', sans-serif;
-          }
+      <div className="min-h-screen bg-slate-50 pt-16">
+        <style>{`
+          /* Professional Dashboard Styling */
           
           @keyframes float {
             0%, 100% { transform: translateY(0px) rotate(0deg); }
@@ -155,10 +151,10 @@ const Dashboard = () => {
           
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
             <div className="text-center slide-up">
-              <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight">
+              <h1 className="text-display text-white mb-6">
                 {t('dashboard.welcome')}, <span className="gradient-text">{user?.name || 'Guest'}</span>
               </h1>
-              <p className="text-xl md:text-2xl text-cyan-100 max-w-3xl mx-auto leading-relaxed font-light">
+              <p className="text-body-large text-cyan-100 max-w-3xl mx-auto leading-relaxed">
                 {t('dashboard.subtitle')}
               </p>
             </div>
@@ -303,9 +299,9 @@ const Dashboard = () => {
             </div>
           )}
 
-          {/* Stats Cards with Glassmorphism */}
+          {/* Stats Cards with Professional Styling */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12 -mt-16 relative z-20">
-            <div className="bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl p-6 border border-white/20 card-hover">
+            <div className="professional-card p-6 card-hover">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-slate-600 uppercase tracking-wider">{t('dashboard.stats.quizzes')}</p>
@@ -317,7 +313,7 @@ const Dashboard = () => {
               </div>
             </div>
 
-            <div className="bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl p-6 border border-white/20 card-hover">
+            <div className="professional-card p-6 card-hover">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-slate-600 uppercase tracking-wider">{t('dashboard.stats.goals')}</p>
@@ -329,7 +325,7 @@ const Dashboard = () => {
               </div>
             </div>
 
-            <div className="bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl p-6 border border-white/20 card-hover">
+            <div className="professional-card p-6 card-hover">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-slate-600 uppercase tracking-wider">{t('dashboard.stats.progress')}</p>
@@ -341,7 +337,7 @@ const Dashboard = () => {
               </div>
             </div>
 
-            <div className="bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl p-6 border border-white/20 card-hover">
+            <div className="professional-card p-6 card-hover">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-slate-600 uppercase tracking-wider">{t('dashboard.stats.mentors')}</p>
