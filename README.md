@@ -45,15 +45,19 @@ A comprehensive career guidance platform that helps users discover their ideal c
 
 ### 🧪 **Testing & Verification**
 - ✅ User registration and login functionality
-- ✅ Quiz submission with accurate career recommendations
+- ✅ Quiz submission with accurate career recommendations and dashboard results
 - ✅ Roadmap creation and progress tracking
 - ✅ Database connectivity and data persistence
 - ✅ API endpoint functionality
+- ✅ Questionnaire with conditional logic (skips A/L subjects if not completed)
+- ✅ Quiz results properly displayed on dashboard
 
 ### 📊 **Before vs After**
 | Issue | Before | After |
 |-------|--------|-------|
 | Quiz Recommendations | Always suggested "Nursing" | Intelligent scoring for Technology/Healthcare/Design |
+| Quiz Submission | Redirected to explore-careers | Properly redirects to dashboard with results |
+| Questionnaire Logic | Asked all questions regardless | Conditional logic skips irrelevant questions |
 | Registration | Database connection issues | Proper authentication with PostgreSQL |
 | Roadmap | Broken step tracking | Full roadmap functionality with progress |
 | Database | Connection failures | Stable PostgreSQL integration |
