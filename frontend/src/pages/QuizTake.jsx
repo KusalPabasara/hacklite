@@ -38,7 +38,17 @@ const QuizTake = () => {
     setIsSubmitting(true);
     try {
       const res = await api.post(`/quizzes/${id}/submit`, { answers });
-      navigate("/explore-careers", { state: { suggestedCategory: res.data.career_category } });
+      console.log('✅ Quiz submitted successfully:', res.data);
+      
+      // Navigate to dashboard with quiz results
+      navigate("/", { 
+        state: { 
+          quizResults: res.data,
+          suggestedCategory: res.data.career_category,
+          suggestedCareer: res.data.suggested_career,
+          quizCompleted: true
+        } 
+      });
     } catch (err) {
       console.error("Error submitting quiz", err);
       alert("There was an error submitting your quiz.");
@@ -69,7 +79,7 @@ const QuizTake = () => {
     <>
       <Navbar />
       <div className="min-h-screen bg-indigo-950">
-        <style jsx>{`
+        <style jsx={true}>{`
           @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap');
           
           * {
