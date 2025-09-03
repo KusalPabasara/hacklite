@@ -51,9 +51,18 @@ const getUserSteps = async (req, res) => {
       const data = await getUserRoadmap(user_id);
       console.log("🎯 Roadmap data returned:", data);
       
+      // If user has no roadmap yet, return a helpful message instead of 404
       if (!data || !data.roadmap) {
-          console.warn("⚠️ No roadmap found");
-          return res.status(404).json({ error: "No roadmap found. Please set a career goal first." });
+          console.log("ℹ️ No roadmap found for user, returning empty state");
+          return res.json({
+              career: "No Career Selected",
+              completed: false,
+              steps: [],
+              currentStep: 0,
+              next: null,
+              totalSteps: 0,
+              message: "Please select a career goal to get started"
+          });
       }
 
       const { roadmap, title, current_step, completed } = data;
@@ -70,7 +79,15 @@ const getUserSteps = async (req, res) => {
           roadmapSteps = roadmap;
       } else {
           console.warn("⚠️ Roadmap is missing or invalid in DB:", roadmap);
-          return res.status(400).json({ error: "Invalid roadmap format in database" });
+          return res.json({
+              career: title || "Unknown Career",
+              completed: false,
+              steps: [],
+              currentStep: 0,
+              next: null,
+              totalSteps: 0,
+              message: "Roadmap data is being updated"
+          });
       }
 
       return res.json({

@@ -33,7 +33,7 @@ function Quizzes() {
     return (
       <>
         <Navbar />
-        <div className="min-h-screen bg-slate-900 flex items-center justify-center">
+        <div className="min-h-screen bg-slate-900 pt-16 flex items-center justify-center">
           <div className="text-center">
             <div className="w-20 h-20 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
             <p className="text-cyan-300 text-lg">Loading quizzes...</p>
@@ -46,13 +46,9 @@ function Quizzes() {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-slate-900">
-        <style jsx>{`
-          @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
-          
-          * {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-          }
+      <div className="min-h-screen bg-slate-900 pt-16">
+        <style>{`
+          /* Professional Quizzes Styling */
           
           @keyframes quiz-float {
             0%, 100% { transform: translateY(0px) rotate(0deg); }

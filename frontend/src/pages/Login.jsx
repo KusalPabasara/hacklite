@@ -32,12 +32,8 @@ const Login = () => {
 
   return (
     <div className="min-h-screen bg-slate-900 flex items-center justify-center p-4 relative overflow-hidden">
-      <style jsx>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-        
-        * {
-          font-family: 'Inter', sans-serif;
-        }
+      <style>{`
+        /* Professional Login Styling */
         
         @keyframes gradient-shift {
           0% { background-position: 0% 50%; }

@@ -66,7 +66,7 @@ function Roadmap() {
         return (
             <>
                 <Navbar />
-                <div className="min-h-screen bg-gray-950 flex items-center justify-center">
+                <div className="min-h-screen bg-gray-950 pt-16 flex items-center justify-center">
                     <div className="text-center">
                         <div className="w-20 h-20 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
                         <p className="text-emerald-300 text-lg">Loading your roadmap...</p>
@@ -80,7 +80,7 @@ function Roadmap() {
         return (
             <>
                 <Navbar />
-                <div className="min-h-screen bg-gray-950 flex items-center justify-center p-4">
+                <div className="min-h-screen bg-gray-950 pt-16 flex items-center justify-center p-4">
                     <div className="max-w-md mx-auto text-center">
                         <div className="glass-effect rounded-3xl p-10 shadow-2xl">
                             <div className="w-20 h-20 bg-gradient-to-br from-red-500 to-orange-600 rounded-3xl flex items-center justify-center mx-auto mb-6">
@@ -106,13 +106,9 @@ function Roadmap() {
     return (
         <>
             <Navbar />
-            <div className="min-h-screen bg-gray-950">
-                <style jsx>{`
-                    @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800&display=swap');
-                    
-                    * {
-                        font-family: 'Rubik', sans-serif;
-                    }
+            <div className="min-h-screen bg-gray-950 pt-16">
+                <style>{`
+                    /* Professional Roadmap Styling */
                     
                     @keyframes path-draw {
                         from { stroke-dashoffset: 1000; }

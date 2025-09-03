@@ -32,7 +32,7 @@ const Mentors = () => {
     return (
       <>
         <Navbar />
-        <div className="min-h-screen bg-gray-900 flex items-center justify-center">
+        <div className="min-h-screen bg-gray-900 pt-16 flex items-center justify-center">
           <div className="text-center">
             <div className="w-20 h-20 border-4 border-orange-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
             <p className="text-orange-300 text-lg">Loading mentors...</p>
@@ -45,13 +45,9 @@ const Mentors = () => {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-gray-900">
-        <style jsx>{`
-          @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap');
-          
-          * {
-            font-family: 'Manrope', sans-serif;
-          }
+      <div className="min-h-screen bg-gray-900 pt-16">
+        <style>{`
+          /* Professional Mentors Styling */
           
           @keyframes mentor-float {
             0%, 100% { transform: translateY(0px) scale(1); }

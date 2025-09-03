@@ -132,5 +132,99 @@
   "profile.location": "ස්ථානය",
   "profile.locationPlaceholder": "නගරය, රට",
   "profile.bio": "ජීව විස්තරය",
-  "profile.bioPlaceholder": "ඔබ ගැන අපට කියන්න..."
+  "profile.bioPlaceholder": "ඔබ ගැන අපට කියන්න...",
+  
+  "careerTerms": {
+    "vta": "වෘත්තික පුහුණු ආයතනය",
+    "nts": "හෙද ශික්ෂණ පාසල", 
+    "germanTech": "ජර්මානු තාක්ෂණය",
+    "vocationalTraining": "වෘත්තික පුහුණුව",
+    "nursingSchool": "හෙද ශික්ෂණ පාසල",
+    "technicalTraining": "තාක්ෂණික පුහුණුව"
+  },
+  
+  "studentFriendly": {
+    "autosuggest": "මට වෘත්තියක් තෝරන්න උදව් කරන්න",
+    "next": "අනිත් එක",
+    "previous": "පෙර එක",
+    "submit": "යවන්න",
+    "continue": "දිගටම කරගෙන යන්න",
+    "getStarted": "ආරම්භ කරන්න",
+    "learnMore": "තව දැනගන්න",
+    "tryAgain": "නැවත උත්සාහ කරන්න",
+    "awesome": "පුදුමයි!",
+    "congratulations": "සුභ පැතුම්!",
+    "youGotThis": "ඔබට පුළුවන්!",
+    "keepGoing": "දිගටම කරගෙන යන්න",
+    "almostThere": "අවසන් වෙන්න ලගයි",
+    "excellent": "ප්‍රශංසනීයයි",
+    "greatJob": "හොඳ වැඩක්",
+    "wellDone": "හොඳට කළා"
+  },
+  
+  "chat": {
+    "assistant": "AI සහායකයා",
+    "askQuestion": "ප්‍රශ්නයක් අසන්න",
+    "speak": "කතා කරන්න",
+    "listening": "ඇසීම...",
+    "stopListening": "ඇසීම නවත්වන්න",
+    "voiceInput": "හඬින් ඇතුල් කරන්න",
+    "typeMessage": "ඔබේ පණිවිඩය ටයිප් කරන්න...",
+    "send": "යවන්න",
+    "thinking": "සිතමින්...",
+    "helpWith": "මට උදව් කරන්න",
+    "careerGuidance": "වෘත්තීය මග පෙන්වීම",
+    "studyHelp": "පාඩම් උදව්",
+    "motivation": "අභිප්‍රේරණය"
+  },
+  
+  "motivation": {
+    "youCanDoIt": "ඔබට පුළුවන්!",
+    "believeInYourself": "ඔබේ තුළ විශ්වාසය තබාගන්න",
+    "everyStepMatters": "සෑම පියවරක්ම වැදගත්",
+    "successAwaits": "සාර්ථකත්වය ඔබ එනතුරු බලා සිටී",
+    "dreamsComeTrue": "සිහින සැබෑ වේ",
+    "neverGiveUp": "කිසිවිටෙක අත් නොහරින්න",
+    "youAreAmazing": "ඔබ පුදුමයි!",
+    "keepPushing": "දිගටම තල්ලු කරන්න",
+    "brightFuture": "ඔබේ අනාගතය දීප්තිමත්",
+    "proudOfYou": "ඔබ ගැන ආඩම්බරයි"
+  },
+  
+  "academic": {
+    "math": "ගණිතය",
+    "science": "විද්‍යාව",
+    "biology": "ජීව විද්‍යාව",
+    "chemistry": "රසායන විද්‍යාව",
+    "physics": "භෞතික විද්‍යාව",
+    "history": "ඉතිහාසය",
+    "geography": "භූගෝල විද්‍යාව",
+    "english": "ඉංග්‍රීසි",
+    "sinhala": "සිංහල",
+    "tamil": "දමිළ",
+    "study": "පාඩම් කරන්න",
+    "learn": "ඉගෙන ගන්න",
+    "practice": "පුහුණුව",
+    "exam": "පරීක්ෂණය",
+    "homework": "ගෙදර වැඩ",
+    "assignment": "කාර්යය",
+    "project": "ව්‍යාපෘතිය"
+  },
+  
+  "practical": {
+    "cv": "CV ලියන්න",
+    "resume": "ප්‍රතිපත්ති ලියන්න",
+    "interview": "සම්මුඛ සාකච්ඡාව",
+    "jobApplication": "රැකියා අයදුම්පත",
+    "coverLetter": "ආවරණ ලිපිය",
+    "skills": "කුසලතා",
+    "experience": "අත්දැකීම්",
+    "education": "අධ්‍යාපනය",
+    "certificate": "සහතිකය",
+    "diploma": "ඩිප්ලෝමාව",
+    "degree": "උපාධිය",
+    "training": "පුහුණුව",
+    "workshop": "වැඩමුළුව",
+    "seminar": "සංගමය"
+  }
 }

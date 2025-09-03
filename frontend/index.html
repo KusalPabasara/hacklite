@@ -1,15 +1,82 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
     <title>MetaMind - Career Guidance Platform</title>
     
     <!-- Google Fonts for Sinhala support -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700&family=Noto+Sans+Sinhala:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Google Translate Widget -->
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+          pageLanguage: 'en',
+          includedLanguages: 'en,si,ta',
+          autoDisplay: false
+        }, 'google_translate_element');
+      }
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    
+    <!-- Additional script to ensure Google Translate elements are hidden -->
+    <script>
+      // Hide Google Translate elements after they load
+      setTimeout(() => {
+        const elements = [
+          '#google_translate_element',
+          'body > .skiptranslate',
+          '.goog-te-banner-frame',
+          '#goog-gt-tt',
+          '.goog-te-menu-frame',
+          '.goog-te-balloon-frame',
+          '.goog-te-gadget',
+          '.goog-te-combo',
+          '.goog-te-gadget-simple',
+          'iframe.goog-te-banner-frame'
+        ];
+        
+        elements.forEach(selector => {
+          const element = document.querySelector(selector);
+          if (element) {
+            element.style.display = 'none !important';
+            element.style.height = '0 !important';
+            element.style.overflow = 'hidden !important';
+          }
+        });
+        
+        // Reset body and html positioning
+        document.body.style.top = '0px !important';
+        document.body.style.position = 'static !important';
+        document.body.style.marginTop = '0 !important';
+        document.body.style.paddingTop = '0 !important';
+        document.documentElement.style.marginTop = '0 !important';
+        document.documentElement.style.paddingTop = '0 !important';
+      }, 1000);
+      
+      // Also run immediately and on DOM changes
+      const hideGoogleTranslateElements = () => {
+        const elements = document.querySelectorAll('body > .skiptranslate, .goog-te-banner-frame, #goog-gt-tt, .goog-te-menu-frame, .goog-te-balloon-frame, iframe.goog-te-banner-frame');
+        elements.forEach(element => {
+          element.style.display = 'none !important';
+          element.style.height = '0 !important';
+          element.style.overflow = 'hidden !important';
+        });
+      };
+      
+      // Run on page load
+      document.addEventListener('DOMContentLoaded', hideGoogleTranslateElements);
+      
+      // Run on any DOM changes (for dynamically added elements)
+      const observer = new MutationObserver(hideGoogleTranslateElements);
+      if (document.body) {
+        observer.observe(document.body, { childList: true, subtree: true });
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

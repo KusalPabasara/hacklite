@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
-require("dotenv").config();
+require("dotenv").config(); // Make sure .env is being read
+console.log("🔐 Loaded OpenAI key:", process.env.OPENAI_API_KEY ? "✅ exists" : "❌ missing");
 
 // --- All route imports ---
 const authRoutes = require("./routes/authRoutes");
@@ -9,12 +10,42 @@ const quizRoutes = require("./routes/quizRoutes");
 const roadmapRoutes = require("./routes/roadmapRoutes");
 const mentorRoutes = require("./routes/mentorRoutes");
 const storyRoutes = require("./routes/storyRoutes");
+const questionnaireRoutes = require("./routes/questionnaireRoutes");
+const chatRoutes = require("./routes/chatRoutes");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    // Allow localhost on any port
+    if (origin.match(/^https?:\/\/localhost:\d+$/)) {
+      return callback(null, true);
+    }
+    
+    // Allow specific origins
+    const allowedOrigins = [
+      'http://localhost:5173',
+      'http://localhost:5174', 
+      'http://localhost:3000',
+      'http://127.0.0.1:5173',
+      'http://127.0.0.1:5174'
+    ];
+    
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      return callback(null, true);
+    }
+    
+    callback(new Error('Not allowed by CORS'));
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json());
 
 // Register all routes
@@ -24,6 +55,8 @@ app.use("/api/quizzes", quizRoutes);
 app.use("/api/roadmap", roadmapRoutes);
 app.use("/api/mentors", mentorRoutes);
 app.use("/api/stories", storyRoutes);
+app.use("/api/questionnaire", questionnaireRoutes);
+app.use("/api/chat", chatRoutes);
 
 // Add missing leaderboard route
 app.get("/api/leaderboard", (req, res) => {
@@ -72,5 +105,7 @@ app.listen(PORT, () => {
     console.log("   • /api/roadmap - Roadmap routes");
     console.log("   • /api/mentors - Mentor routes");
     console.log("   • /api/stories - Story routes");
+    console.log("   • /api/questionnaire - Questionnaire routes");
+    console.log("   • /api/chat - Chat assistant routes");
     console.log("   • /api/leaderboard - Leaderboard data");
 });

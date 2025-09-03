@@ -69,10 +69,12 @@ const getUserQuestionnaireAnswers = async (userId) => {
 // Calculate career recommendations based on answers
 const calculateCareerRecommendations = async (userId) => {
   const answers = await getUserQuestionnaireAnswers(userId);
+  console.log('🔍 Calculating recommendations for user:', userId, 'with', answers.length, 'answers');
   
   // Get all careers
   const careersResult = await pool.query('SELECT * FROM careers');
   const careers = careersResult.rows;
+  console.log('📚 Found', careers.length, 'careers to evaluate');
   
   const recommendations = [];
   
@@ -83,15 +85,14 @@ const calculateCareerRecommendations = async (userId) => {
     for (const answer of answers) {
       if (answer.career_weight) {
         const weights = answer.career_weight;
-        const careerKey = career.title.toLowerCase().replace(/\s+/g, '_').replace(/[^a-z_]/g, '');
         
-        // Map career titles to keys
+        // Map career titles to keys for new careers
         let weightKey = '';
         if (career.title.includes('German Technical')) {
           weightKey = 'german_tech';
         } else if (career.title.includes('VTA') || career.title.includes('Vocational Training')) {
           weightKey = 'vta';
-        } else if (career.title.includes('Nursing') || career.title.includes('NTS')) {
+        } else if (career.title.includes('NTS') || career.title.includes('Nursing Training')) {
           weightKey = 'nts';
         }
         
@@ -126,6 +127,45 @@ const calculateCareerRecommendations = async (userId) => {
     }
   }
   
+  // If no specific recommendations found, provide fallback recommendations based on career categories
+  if (recommendations.length === 0) {
+    console.log('⚠️ No specific recommendations found, providing fallback recommendations');
+    
+    // Get user's education level from answers
+    const educationAnswer = answers.find(a => a.question_id === 1);
+    const educationLevel = educationAnswer ? educationAnswer.answer : 'olevels';
+    console.log('🎓 Education level detected:', educationLevel);
+    
+          // Provide fallback recommendations based on education level for new careers
+      for (const career of careers) {
+        let fallbackScore = 0.5; // Base score
+        
+        // Adjust score based on education level and career category
+        if (career.category === 'Technical') {
+          if (educationLevel === 'olevels') {
+            fallbackScore = 0.9; // VTA is perfect for O/L graduates
+          } else if (educationLevel === 'alevels') {
+            fallbackScore = 0.8; // Good for A/L graduates
+          } else if (educationLevel === 'degree') {
+            fallbackScore = 0.7; // German Tech good for degree holders
+          }
+        } else if (career.category === 'Healthcare') {
+          if (educationLevel === 'alevels' || educationLevel === 'degree') {
+            fallbackScore = 0.9; // NTS perfect for A/L and degree holders
+          } else if (educationLevel === 'diploma') {
+            fallbackScore = 0.8;
+          }
+        }
+        
+        recommendations.push({
+          career_id: career.id,
+          career_title: career.title,
+          career_category: career.category,
+          match_score: Math.round(fallbackScore * 100) / 100
+        });
+      }
+  }
+  
   // Sort by match score descending
   recommendations.sort((a, b) => b.match_score - a.match_score);
   
@@ -153,6 +193,7 @@ const calculateCareerRecommendations = async (userId) => {
     client.release();
   }
   
+  console.log('🎯 Final recommendations:', recommendations.length, 'careers recommended');
   return recommendations;
 };
 

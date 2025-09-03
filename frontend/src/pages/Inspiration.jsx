@@ -66,7 +66,7 @@ const Inspiration = () => {
     return (
       <>
         <Navbar />
-        <div className="min-h-screen bg-gray-950 flex items-center justify-center">
+        <div className="min-h-screen bg-gray-950 pt-16 flex items-center justify-center">
           <div className="text-center">
             <div className="w-20 h-20 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
             <p className="text-purple-300 text-lg">Loading inspiring stories...</p>
@@ -79,13 +79,9 @@ const Inspiration = () => {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-gray-950">
-        <style jsx>{`
-          @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap');
-          
-          * {
-            font-family: 'Sora', sans-serif;
-          }
+      <div className="min-h-screen bg-gray-950 pt-16">
+        <style>{`
+          /* Professional Inspiration Styling */
           
           @keyframes float-story {
             0%, 100% { transform: translateY(0px) rotate(0deg); }
