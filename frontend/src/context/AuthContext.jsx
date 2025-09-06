@@ -29,6 +29,7 @@ export const AuthProvider = ({ children }) => {
   const [questionnaireCompleted, setQuestionnaireCompleted] = useState(null);
   const [loading, setLoading] = useState(false);
   const [hasCheckedQuestionnaire, setHasCheckedQuestionnaire] = useState(false);
+<<<<<<< HEAD
   const [userProfile, setUserProfile] = useState(() => {
     const stored = localStorage.getItem('userProfile');
     return stored ? JSON.parse(stored) : null;
@@ -36,6 +37,15 @@ export const AuthProvider = ({ children }) => {
 
   const checkQuestionnaireCompletion = useCallback(async () => {
     if (!user || hasCheckedQuestionnaire) return;
+=======
+
+  const checkQuestionnaireCompletion = useCallback(async () => {
+    // Add null check for user
+    if (!user || hasCheckedQuestionnaire) {
+      console.log('🔍 No user ID provided for questionnaire check or already checked');
+      return { completed: false };
+    }
+>>>>>>> c2fbe43 (Initial commit)
     
     try {
       setLoading(true);
@@ -44,6 +54,10 @@ export const AuthProvider = ({ children }) => {
       console.log('✅ Questionnaire completion response:', response.data);
       setQuestionnaireCompleted(response.data.completed);
       setHasCheckedQuestionnaire(true);
+<<<<<<< HEAD
+=======
+      return response.data;
+>>>>>>> c2fbe43 (Initial commit)
     } catch (error) {
       console.error('❌ Error checking questionnaire completion:', error);
       if (error.response?.status === 401) {
@@ -54,6 +68,10 @@ export const AuthProvider = ({ children }) => {
         setQuestionnaireCompleted(false);
         setHasCheckedQuestionnaire(true);
       }
+<<<<<<< HEAD
+=======
+      return { completed: false };
+>>>>>>> c2fbe43 (Initial commit)
     } finally {
       setLoading(false);
     }
@@ -82,6 +100,7 @@ export const AuthProvider = ({ children }) => {
     setQuestionnaireCompleted(true);
   };
 
+<<<<<<< HEAD
   const updateUserProfile = (profileData) => {
     setUserProfile(profileData);
     localStorage.setItem('userProfile', JSON.stringify(profileData));
@@ -104,6 +123,8 @@ export const AuthProvider = ({ children }) => {
     return { type: 'initial', data: 'U' };
   };
 
+=======
+>>>>>>> c2fbe43 (Initial commit)
   return (
     <AuthContext.Provider value={{ 
       user, 
@@ -112,10 +133,14 @@ export const AuthProvider = ({ children }) => {
       questionnaireCompleted, 
       loading,
       markQuestionnaireCompleted,
+<<<<<<< HEAD
       checkQuestionnaireCompletion,
       userProfile,
       updateUserProfile,
       getAvatarData
+=======
+      checkQuestionnaireCompletion
+>>>>>>> c2fbe43 (Initial commit)
     }}>
       {children}
     </AuthContext.Provider>

@@ -11,13 +11,22 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
+<<<<<<< HEAD
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+=======
+  const handleChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
+>>>>>>> c2fbe43 (Initial commit)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     setIsLoading(true);
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> c2fbe43 (Initial commit)
     try {
       const res = await api.post("/auth/login", form);
       login(res.data.token);
@@ -90,7 +99,11 @@ const Login = () => {
 
       {/* Animated Background Elements */}
       <div className="absolute inset-0 gradient-animate opacity-20"></div>
+<<<<<<< HEAD
       
+=======
+
+>>>>>>> c2fbe43 (Initial commit)
       {/* Floating Bubbles */}
       {[...Array(6)].map((_, i) => (
         <div
@@ -101,14 +114,25 @@ const Login = () => {
             height: `${Math.random() * 100 + 50}px`,
             left: `${Math.random() * 100}%`,
             animationDelay: `${Math.random() * 20}s`,
+<<<<<<< HEAD
             animationDuration: `${Math.random() * 10 + 20}s`
+=======
+            animationDuration: `${Math.random() * 10 + 20}s`,
+>>>>>>> c2fbe43 (Initial commit)
           }}
         ></div>
       ))}
 
       {/* Morphing Shapes */}
       <div className="absolute top-20 left-10 w-64 h-64 bg-cyan-500/20 morph-shape filter blur-3xl"></div>
+<<<<<<< HEAD
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/20 morph-shape filter blur-3xl" style={{animationDelay: '4s'}}></div>
+=======
+      <div
+        className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/20 morph-shape filter blur-3xl"
+        style={{ animationDelay: "4s" }}
+      ></div>
+>>>>>>> c2fbe43 (Initial commit)
 
       <div className="relative z-10 w-full max-w-md">
         {/* Logo and Title */}
@@ -116,13 +140,26 @@ const Login = () => {
           <div className="flex justify-center mb-6">
             <Logo className="h-16" />
           </div>
+<<<<<<< HEAD
           <p className="text-cyan-300 text-lg font-light">Your Smart Career Navigator</p>
+=======
+          <p className="text-cyan-300 text-lg font-light">
+            Your Smart Career Navigator
+          </p>
+>>>>>>> c2fbe43 (Initial commit)
         </div>
 
         {/* Login Form */}
         <div className="glass-effect rounded-3xl p-8 shadow-2xl">
+<<<<<<< HEAD
           <h2 className="text-2xl font-semibold text-white mb-6">Welcome Back</h2>
           
+=======
+          <h2 className="text-2xl font-semibold text-white mb-6">
+            Welcome Back
+          </h2>
+
+>>>>>>> c2fbe43 (Initial commit)
           {error && (
             <div className="bg-red-500/20 border border-red-500/50 text-red-300 px-4 py-3 rounded-2xl mb-6 flex items-center">
               <span className="text-xl mr-2">⚠️</span>
@@ -132,7 +169,13 @@ const Login = () => {
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
+<<<<<<< HEAD
               <label className="block text-sm font-medium text-cyan-300 mb-2">Email Address</label>
+=======
+              <label className="block text-sm font-medium text-cyan-300 mb-2">
+                Email Address
+              </label>
+>>>>>>> c2fbe43 (Initial commit)
               <div className="relative">
                 <input
                   type="email"
@@ -143,15 +186,38 @@ const Login = () => {
                   required
                 />
                 <div className="absolute right-4 top-4 text-cyan-400">
+<<<<<<< HEAD
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
                   </svg>
                   </div>
+=======
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
+                    />
+                  </svg>
+                </div>
+>>>>>>> c2fbe43 (Initial commit)
               </div>
             </div>
 
             <div>
+<<<<<<< HEAD
               <label className="block text-sm font-medium text-cyan-300 mb-2">Password</label>
+=======
+              <label className="block text-sm font-medium text-cyan-300 mb-2">
+                Password
+              </label>
+>>>>>>> c2fbe43 (Initial commit)
               <div className="relative">
                 <input
                   type="password"
@@ -162,8 +228,23 @@ const Login = () => {
                   required
                 />
                 <div className="absolute right-4 top-4 text-cyan-400">
+<<<<<<< HEAD
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+=======
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                    />
+>>>>>>> c2fbe43 (Initial commit)
                   </svg>
                 </div>
               </div>
@@ -188,7 +269,14 @@ const Login = () => {
           <div className="mt-8 text-center">
             <p className="text-white/60">
               Don't have an account?{" "}
+<<<<<<< HEAD
               <Link to="/register" className="text-cyan-400 hover:text-cyan-300 font-semibold transition-colors duration-200">
+=======
+              <Link
+                to="/register"
+                className="text-cyan-400 hover:text-cyan-300 font-semibold transition-colors duration-200"
+              >
+>>>>>>> c2fbe43 (Initial commit)
                 Create one now
               </Link>
             </p>
@@ -206,4 +294,8 @@ const Login = () => {
   );
 };
 
+<<<<<<< HEAD
 export default Login;
+=======
+export default Login;
+>>>>>>> c2fbe43 (Initial commit)

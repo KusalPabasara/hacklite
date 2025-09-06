@@ -3,6 +3,10 @@ import { useTranslation } from 'react-i18next';
 import ReactMarkdown from 'react-markdown';
 import api from "../utils/api";
 import Navbar from "../components/Navbar";
+<<<<<<< HEAD
+=======
+import VoiceInput from "../components/VoiceInput";
+>>>>>>> c2fbe43 (Initial commit)
 
 function ChatAssistant() {
   const { t, i18n } = useTranslation();
@@ -17,6 +21,10 @@ function ChatAssistant() {
   const [isLoading, setIsLoading] = useState(false);
   const [isListening, setIsListening] = useState(false);
   const [speechSupported, setSpeechSupported] = useState(false);
+<<<<<<< HEAD
+=======
+  const [currentLang, setCurrentLang] = useState('en');
+>>>>>>> c2fbe43 (Initial commit)
   const messagesEndRef = useRef(null);
   const recognitionRef = useRef(null);
 
@@ -24,10 +32,32 @@ function ChatAssistant() {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
+<<<<<<< HEAD
+=======
+  const handleVoiceTranscript = (transcript) => {
+    setCurrentMessage(transcript);
+  };
+
+>>>>>>> c2fbe43 (Initial commit)
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
 
+<<<<<<< HEAD
+=======
+  // Detect current language from Google Translate
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const select = document.querySelector('select.goog-te-combo');
+      if (select && select.value !== currentLang) {
+        setCurrentLang(select.value || 'en');
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [currentLang]);
+
+>>>>>>> c2fbe43 (Initial commit)
   // Initialize speech recognition
   useEffect(() => {
     if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
@@ -418,6 +448,7 @@ function ChatAssistant() {
                 
                 {/* Voice Input Button */}
                 {speechSupported && (
+<<<<<<< HEAD
                   <button
                     onClick={isListening ? stopSpeechRecognition : startSpeechRecognition}
                     className={`px-4 py-3 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 ${
@@ -439,6 +470,12 @@ function ChatAssistant() {
                       </div>
                     )}
                   </button>
+=======
+                  <VoiceInput 
+                    onTranscript={handleVoiceTranscript} 
+                    currentLang={currentLang}
+                  />
+>>>>>>> c2fbe43 (Initial commit)
                 )}
                 
                 <button

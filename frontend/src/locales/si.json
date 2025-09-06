@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "welcome": "MetaMind වෙත පිළිගනිමු",
+=======
+  "welcome": "Marga.lk වෙත පිළිගනිමු",
+>>>>>>> c2fbe43 (Initial commit)
   "explore": "වෘත්තීන් සොයන්න",
   "login": "ඇතුල් වන්න",
   "register": "ලියාපදිංචි වන්න",
@@ -133,6 +137,10 @@
   "profile.locationPlaceholder": "නගරය, රට",
   "profile.bio": "ජීව විස්තරය",
   "profile.bioPlaceholder": "ඔබ ගැන අපට කියන්න...",
+<<<<<<< HEAD
+=======
+  "profile.cancel": "අවලංගු කරන්න",
+>>>>>>> c2fbe43 (Initial commit)
   
   "careerTerms": {
     "vta": "වෘත්තික පුහුණු ආයතනය",

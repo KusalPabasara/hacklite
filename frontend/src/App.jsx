@@ -1,6 +1,13 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+<<<<<<< HEAD
 import { useEffect } from "react";
 import { AuthProvider } from "./context/AuthContext";
+=======
+import { useEffect, useState } from "react";
+import { AuthProvider } from "./context/AuthContext";
+import { ThemeProvider } from "./context/ThemeContext";
+import { useTranslation } from "react-i18next";
+>>>>>>> c2fbe43 (Initial commit)
 import "./i18n"; // Updated import path
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
@@ -21,6 +28,45 @@ import ChatAssistant from "./pages/ChatAssistant.jsx";
 // Add this route inside the Routes component:
 
 function App() {
+<<<<<<< HEAD
+=======
+    const { i18n } = useTranslation();
+    const [currentLang, setCurrentLang] = useState(i18n.language);
+
+    // Google Translate status check (optional debug)
+    useEffect(() => {
+        const checkGoogleTranslate = () => {
+            const element = document.getElementById('google_translate_element');
+            const select = document.querySelector('select.goog-te-combo');
+            if (element && select) {
+                console.log('✅ Google Translate ready');
+            }
+        };
+
+        // Check after component mounts
+        setTimeout(checkGoogleTranslate, 2000);
+    }, []);
+
+    // Update language attribute when language changes
+    useEffect(() => {
+        const handleLanguageChange = (lng) => {
+            setCurrentLang(lng);
+            document.documentElement.lang = lng;
+            document.body.lang = lng;
+        };
+
+        // Set initial language
+        handleLanguageChange(i18n.language);
+
+        // Listen for language changes
+        i18n.on('languageChanged', handleLanguageChange);
+
+        return () => {
+            i18n.off('languageChanged', handleLanguageChange);
+        };
+    }, [i18n]);
+
+>>>>>>> c2fbe43 (Initial commit)
     // Additional safety measure to hide Google Translate elements
     useEffect(() => {
         const hideGoogleTranslateElements = () => {
@@ -53,12 +99,23 @@ function App() {
     }, []);
 
     return (
+<<<<<<< HEAD
         <div className="main-dashboard dark-theme">
             <AuthProvider>
                 <BrowserRouter>
                     <QuestionnaireRedirect>
                         {/* Hidden Google Translate Widget Container */}
                         <div id="google_translate_element" style={{ display: "none" }}></div>
+=======
+        <div className="main-dashboard app-container" lang={currentLang}>
+            {/* Hidden Google Translate Element */}
+            <div id="google_translate_element" style={{ display: 'none' }}></div>
+            
+            <ThemeProvider>
+                <AuthProvider>
+                    <BrowserRouter>
+                    <QuestionnaireRedirect>
+>>>>>>> c2fbe43 (Initial commit)
                         <Routes>
                 <Route 
                     path="/profile" 
@@ -171,8 +228,14 @@ function App() {
                     />
                         </Routes>
                     </QuestionnaireRedirect>
+<<<<<<< HEAD
                 </BrowserRouter>
             </AuthProvider>
+=======
+                    </BrowserRouter>
+                </AuthProvider>
+            </ThemeProvider>
+>>>>>>> c2fbe43 (Initial commit)
         </div>
     );
 }

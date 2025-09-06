@@ -2,6 +2,10 @@ import { useState, useEffect, useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 import Navbar from "../components/Navbar";
+<<<<<<< HEAD
+=======
+import ThemeToggle from "../components/ThemeToggle";
+>>>>>>> c2fbe43 (Initial commit)
 import { AuthContext } from "../context/AuthContext";
 import api from "../utils/api";
 
@@ -83,7 +87,11 @@ const Dashboard = () => {
   return (
     <>
       <Navbar />
+<<<<<<< HEAD
       <div className="min-h-screen bg-slate-50 pt-16">
+=======
+      <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white pt-20 transition-all duration-300">
+>>>>>>> c2fbe43 (Initial commit)
         <style>{`
           /* Professional Dashboard Styling */
           
@@ -301,11 +309,19 @@ const Dashboard = () => {
 
           {/* Stats Cards with Professional Styling */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12 -mt-16 relative z-20">
+<<<<<<< HEAD
             <div className="professional-card p-6 card-hover">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-slate-600 uppercase tracking-wider">{t('dashboard.stats.quizzes')}</p>
                   <p className="text-4xl font-bold text-slate-900 mt-2">{stats.quizzesCompleted}</p>
+=======
+            <div className="professional-card p-6 card-hover bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-slate-600 dark:text-gray-400 uppercase tracking-wider">{t('dashboard.stats.quizzes')}</p>
+                  <p className="text-4xl font-bold text-slate-900 dark:text-white mt-2">{stats.quizzesCompleted}</p>
+>>>>>>> c2fbe43 (Initial commit)
                 </div>
                 <div className="w-16 h-16 bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-2xl flex items-center justify-center text-white text-2xl pulse-glow">
                   📝
@@ -313,11 +329,19 @@ const Dashboard = () => {
               </div>
             </div>
 
+<<<<<<< HEAD
             <div className="professional-card p-6 card-hover">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-slate-600 uppercase tracking-wider">{t('dashboard.stats.goals')}</p>
                   <p className="text-4xl font-bold text-slate-900 mt-2">{stats.careerGoals}</p>
+=======
+            <div className="professional-card p-6 card-hover bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-slate-600 dark:text-gray-400 uppercase tracking-wider">{t('dashboard.stats.goals')}</p>
+                  <p className="text-4xl font-bold text-slate-900 dark:text-white mt-2">{stats.careerGoals}</p>
+>>>>>>> c2fbe43 (Initial commit)
                 </div>
                 <div className="w-16 h-16 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-2xl flex items-center justify-center text-white text-2xl pulse-glow">
                   🎯
@@ -325,11 +349,19 @@ const Dashboard = () => {
               </div>
             </div>
 
+<<<<<<< HEAD
             <div className="professional-card p-6 card-hover">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-slate-600 uppercase tracking-wider">{t('dashboard.stats.progress')}</p>
                   <p className="text-4xl font-bold text-slate-900 mt-2">{stats.roadmapProgress}%</p>
+=======
+            <div className="professional-card p-6 card-hover bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-slate-600 dark:text-gray-400 uppercase tracking-wider">{t('dashboard.stats.progress')}</p>
+                  <p className="text-4xl font-bold text-slate-900 dark:text-white mt-2">{stats.roadmapProgress}%</p>
+>>>>>>> c2fbe43 (Initial commit)
                 </div>
                 <div className="w-16 h-16 bg-gradient-to-br from-violet-400 to-violet-600 rounded-2xl flex items-center justify-center text-white text-2xl pulse-glow">
                   📊
@@ -337,11 +369,19 @@ const Dashboard = () => {
               </div>
             </div>
 
+<<<<<<< HEAD
             <div className="professional-card p-6 card-hover">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-slate-600 uppercase tracking-wider">{t('dashboard.stats.mentors')}</p>
                   <p className="text-4xl font-bold text-slate-900 mt-2">{stats.mentorConnections}</p>
+=======
+            <div className="professional-card p-6 card-hover bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-slate-600 dark:text-gray-400 uppercase tracking-wider">{t('dashboard.stats.mentors')}</p>
+                  <p className="text-4xl font-bold text-slate-900 dark:text-white mt-2">{stats.mentorConnections}</p>
+>>>>>>> c2fbe43 (Initial commit)
                 </div>
                 <div className="w-16 h-16 bg-gradient-to-br from-amber-400 to-amber-600 rounded-2xl flex items-center justify-center text-white text-2xl pulse-glow">
                   👥
@@ -352,13 +392,21 @@ const Dashboard = () => {
 
           {/* Quick Actions with Modern Design */}
           <div className="mb-12">
+<<<<<<< HEAD
             <h2 className="text-3xl font-bold text-slate-900 mb-8">{t('dashboard.quickActions')}</h2>
+=======
+            <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-8">{t('dashboard.quickActions')}</h2>
+>>>>>>> c2fbe43 (Initial commit)
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {quickActions.map((action, index) => (
                 <Link
                   key={index}
                   to={action.link}
+<<<<<<< HEAD
                   className="group relative overflow-hidden bg-white rounded-3xl shadow-lg p-8 border border-slate-200 hover:border-transparent transition-all duration-500 card-hover"
+=======
+                  className="group relative overflow-hidden bg-white dark:bg-gray-800 rounded-3xl shadow-lg p-8 border border-slate-200 dark:border-gray-700 hover:border-transparent transition-all duration-500 card-hover"
+>>>>>>> c2fbe43 (Initial commit)
                   style={{animationDelay: `${index * 0.1}s`}}
                 >
                   <div className="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${action.color}"></div>
@@ -375,18 +423,31 @@ const Dashboard = () => {
           {/* Recent Activity & Progress with Modern Cards */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Recent Activity */}
+<<<<<<< HEAD
             <div className="bg-white rounded-3xl shadow-xl p-8 border border-slate-200">
               <h3 className="text-2xl font-bold text-slate-900 mb-6">{t('dashboard.recentActivity')}</h3>
               <div className="space-y-4">
                 {recentActivities.map((activity, index) => (
                   <div key={index} className="flex items-start space-x-4 p-4 rounded-2xl hover:bg-slate-50 transition-colors duration-300">
+=======
+            <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-8 border border-slate-200 dark:border-gray-700">
+              <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">{t('dashboard.recentActivity')}</h3>
+              <div className="space-y-4">
+                {recentActivities.map((activity, index) => (
+                  <div key={index} className="flex items-start space-x-4 p-4 rounded-2xl hover:bg-slate-50 dark:hover:bg-gray-700 transition-colors duration-300">
+>>>>>>> c2fbe43 (Initial commit)
                     <div className={`w-3 h-3 rounded-full mt-1.5 ${
                       activity.type === 'quiz' ? 'bg-cyan-500' :
                       activity.type === 'goal' ? 'bg-emerald-500' : 'bg-amber-500'
                     }`}></div>
                     <div className="flex-1">
+<<<<<<< HEAD
                       <p className="font-medium text-slate-900">{activity.action}</p>
                       <p className="text-sm text-slate-500 mt-1">{activity.time}</p>
+=======
+                      <p className="font-medium text-slate-900 dark:text-white">{activity.action}</p>
+                      <p className="text-sm text-slate-500 dark:text-gray-400 mt-1">{activity.time}</p>
+>>>>>>> c2fbe43 (Initial commit)
                     </div>
                   </div>
                 ))}
@@ -394,6 +455,7 @@ const Dashboard = () => {
             </div>
 
             {/* Progress Overview */}
+<<<<<<< HEAD
             <div className="bg-white rounded-3xl shadow-xl p-8 border border-slate-200">
               <h3 className="text-2xl font-bold text-slate-900 mb-6">{t('dashboard.yourProgress')}</h3>
               <div className="space-y-6">
@@ -403,26 +465,51 @@ const Dashboard = () => {
                     <span className="font-bold text-slate-900">100%</span>
                   </div>
                   <div className="w-full bg-slate-200 rounded-full h-3 overflow-hidden">
+=======
+            <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-8 border border-slate-200 dark:border-gray-700">
+              <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">{t('dashboard.yourProgress')}</h3>
+              <div className="space-y-6">
+                <div>
+                  <div className="flex justify-between text-sm mb-3">
+                    <span className="text-slate-700 dark:text-gray-300 font-medium">{t('dashboard.progress.quiz')}</span>
+                    <span className="font-bold text-slate-900 dark:text-white">100%</span>
+                  </div>
+                  <div className="w-full bg-slate-200 dark:bg-gray-700 rounded-full h-3 overflow-hidden">
+>>>>>>> c2fbe43 (Initial commit)
                     <div className="bg-gradient-to-r from-emerald-400 to-emerald-600 h-3 rounded-full transition-all duration-1000" style={{ width: '100%' }}></div>
                   </div>
                 </div>
                 
                 <div>
                   <div className="flex justify-between text-sm mb-3">
+<<<<<<< HEAD
                     <span className="text-slate-700 font-medium">{t('dashboard.progress.roadmap')}</span>
                     <span className="font-bold text-slate-900">{stats.roadmapProgress}%</span>
                   </div>
                   <div className="w-full bg-slate-200 rounded-full h-3 overflow-hidden">
+=======
+                    <span className="text-slate-700 dark:text-gray-300 font-medium">{t('dashboard.progress.roadmap')}</span>
+                    <span className="font-bold text-slate-900 dark:text-white">{stats.roadmapProgress}%</span>
+                  </div>
+                  <div className="w-full bg-slate-200 dark:bg-gray-700 rounded-full h-3 overflow-hidden">
+>>>>>>> c2fbe43 (Initial commit)
                     <div className="bg-gradient-to-r from-cyan-400 to-cyan-600 h-3 rounded-full transition-all duration-1000" style={{ width: `${stats.roadmapProgress}%` }}></div>
                   </div>
                 </div>
 
                 <div>
                   <div className="flex justify-between text-sm mb-3">
+<<<<<<< HEAD
                     <span className="text-slate-700 font-medium">{t('dashboard.progress.mentors')}</span>
                     <span className="font-bold text-slate-900">{stats.mentorConnections}/5</span>
                   </div>
                   <div className="w-full bg-slate-200 rounded-full h-3 overflow-hidden">
+=======
+                    <span className="text-slate-700 dark:text-gray-300 font-medium">{t('dashboard.progress.mentors')}</span>
+                    <span className="font-bold text-slate-900 dark:text-white">{stats.mentorConnections}/5</span>
+                  </div>
+                  <div className="w-full bg-slate-200 dark:bg-gray-700 rounded-full h-3 overflow-hidden">
+>>>>>>> c2fbe43 (Initial commit)
                     <div className="bg-gradient-to-r from-violet-400 to-violet-600 h-3 rounded-full transition-all duration-1000" style={{ width: `${(stats.mentorConnections/5)*100}%` }}></div>
                   </div>
                 </div>
@@ -461,6 +548,12 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+<<<<<<< HEAD
+=======
+      
+      {/* Floating Theme Toggle */}
+      <ThemeToggle variant="floating" />
+>>>>>>> c2fbe43 (Initial commit)
     </>
   );
 };

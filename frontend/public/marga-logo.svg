@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230 60" fill="none">
+  <text x="0" y="45" font-family="Inter, sans-serif" font-size="40" fill="currentColor" letter-spacing="1">
+    M
+  </text>
+  <g transform="translate(30, 6)">
+    <polygon points="0,40 20,0 40,40" fill="currentColor"/>
+    <polygon points="20,12 10,32 30,32" fill="white"/>
+  </g>
+  <text x="80" y="45" font-family="Inter, sans-serif" font-size="40" fill="currentColor" letter-spacing="1">
+    rga.lk
+  </text>
+</svg>

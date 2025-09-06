@@ -1,16 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+<<<<<<< HEAD
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
     <title>MetaMind - Career Guidance Platform</title>
+=======
+    <meta charset="utf-8" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Marga.lk - Career Guidance Platform" />
+    <title>Marga.lk - Career Guidance Platform</title>
+    
+    <!-- Theme fallback script - applies theme after DOM loads -->
+    <script>
+      // Wait for DOM to be ready before accessing document.body
+      document.addEventListener('DOMContentLoaded', function() {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+          document.documentElement.classList.add('dark');
+          if (document.body) document.body.classList.add('dark');
+        } else if (savedTheme === 'light') {
+          document.documentElement.classList.remove('dark');
+          if (document.body) document.body.classList.remove('dark');
+        } else {
+          // Fallback to system preference
+          if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+            if (document.body) document.body.classList.add('dark');
+          }
+        }
+      });
+    </script>
+>>>>>>> c2fbe43 (Initial commit)
     
     <!-- Google Fonts for Sinhala support -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700&family=Noto+Sans+Sinhala:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
+<<<<<<< HEAD
     <!-- Google Translate Widget -->
     <script type="text/javascript">
       function googleTranslateElementInit() {
@@ -22,6 +53,8 @@
       }
     </script>
     <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+=======
+>>>>>>> c2fbe43 (Initial commit)
     
     <!-- Additional script to ensure Google Translate elements are hidden -->
     <script>
@@ -49,17 +82,32 @@
           }
         });
         
+<<<<<<< HEAD
         // Reset body and html positioning
         document.body.style.top = '0px !important';
         document.body.style.position = 'static !important';
         document.body.style.marginTop = '0 !important';
         document.body.style.paddingTop = '0 !important';
+=======
+        // Reset body and html positioning - only if body exists
+        if (document.body) {
+          document.body.style.top = '0px !important';
+          document.body.style.position = 'static !important';
+          document.body.style.marginTop = '0 !important';
+          document.body.style.paddingTop = '0 !important';
+        }
+>>>>>>> c2fbe43 (Initial commit)
         document.documentElement.style.marginTop = '0 !important';
         document.documentElement.style.paddingTop = '0 !important';
       }, 1000);
       
       // Also run immediately and on DOM changes
       const hideGoogleTranslateElements = () => {
+<<<<<<< HEAD
+=======
+        if (!document.body) return; // Safety check
+        
+>>>>>>> c2fbe43 (Initial commit)
         const elements = document.querySelectorAll('body > .skiptranslate, .goog-te-banner-frame, #goog-gt-tt, .goog-te-menu-frame, .goog-te-balloon-frame, iframe.goog-te-banner-frame');
         elements.forEach(element => {
           element.style.display = 'none !important';
@@ -76,10 +124,104 @@
       if (document.body) {
         observer.observe(document.body, { childList: true, subtree: true });
       }
+<<<<<<< HEAD
+=======
+      
+      // Language persistence and loading
+      window.setLanguage = function(lang) {
+        localStorage.setItem('preferredLang', lang);
+        console.log('Setting language to:', lang);
+        
+        // Wait for Google Translate to be ready
+        const waitForGoogleTranslate = () => {
+          const select = document.querySelector('.goog-te-combo');
+          if (select) {
+            console.log('Google Translate select found, setting language:', lang);
+            select.value = lang;
+            select.dispatchEvent(new Event('change'));
+            return true;
+          }
+          return false;
+        };
+        
+        // Try immediately
+        if (!waitForGoogleTranslate()) {
+          // If not ready, wait and try again
+          const interval = setInterval(() => {
+            if (waitForGoogleTranslate()) {
+              clearInterval(interval);
+            }
+          }, 100);
+          
+          // Clear interval after 5 seconds to prevent infinite loop
+          setTimeout(() => clearInterval(interval), 5000);
+        }
+      };
+      
+      window.changeLang = function(lang) {
+        localStorage.setItem('preferredLang', lang);
+        window.setLanguage(lang);
+      };
+      
+      // Load language on page reload - safely access DOM
+      window.onload = function () {
+        // safely access body after it's ready
+        if (document.body) {
+          document.body.classList?.add('translate-loaded');
+        }
+
+        const savedLang = localStorage.getItem('preferredLang');
+        console.log('Page loaded, saved language:', savedLang);
+        
+        if (savedLang && savedLang !== 'en') {
+          // Wait for Google Translate to be ready, then apply saved language
+          const applySavedLanguage = () => {
+            const select = document.querySelector('.goog-te-combo');
+            if (select) {
+              console.log('Applying saved language:', savedLang);
+              select.value = savedLang;
+              select.dispatchEvent(new Event('change'));
+              return true;
+            }
+            return false;
+          };
+          
+          // Try immediately
+          if (!applySavedLanguage()) {
+            // If not ready, wait and try again
+            const interval = setInterval(() => {
+              if (applySavedLanguage()) {
+                clearInterval(interval);
+              }
+            }, 200);
+            
+            // Clear interval after 10 seconds
+            setTimeout(() => clearInterval(interval), 10000);
+          }
+        }
+      };
+>>>>>>> c2fbe43 (Initial commit)
     </script>
   </head>
   <body>
     <div id="root"></div>
+<<<<<<< HEAD
     <script type="module" src="/src/index.jsx"></script>
+=======
+    
+    <script type="module" src="/src/index.jsx"></script>
+    
+    <!-- Google Translate Widget - Clean Implementation -->
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+          pageLanguage: 'en',
+          includedLanguages: 'en,si,ta',
+          autoDisplay: false
+        }, 'google_translate_element');
+      }
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+>>>>>>> c2fbe43 (Initial commit)
   </body>
 </html>

@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
+<<<<<<< HEAD
   baseURL: 'http://localhost:5000/api',
   timeout: 10000
 });
@@ -13,6 +14,22 @@ api.interceptors.request.use((config) => {
     console.log('🔑 Token attached to request:', token.substring(0, 20) + '...');
   } else {
     console.warn('⚠️ No token found in localStorage');
+=======
+  baseURL: 'http://localhost:5001/api',
+  timeout: 10000,
+  withCredentials: true
+});
+
+// ✅ Automatically attach token to each request (except auth endpoints)
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem("token");
+  // Don't attach token for register/login endpoints
+  if (token && !config.url.includes("/auth/register") && !config.url.includes("/auth/login")) {
+    config.headers.Authorization = `Bearer ${token}`;
+    console.log('🔑 Token attached to request:', token.substring(0, 20) + '...');
+  } else if (!token && !config.url.includes("/auth/register") && !config.url.includes("/auth/login")) {
+    console.warn('⚠️ No token found in localStorage for protected endpoint');
+>>>>>>> c2fbe43 (Initial commit)
   }
   return config;
 });

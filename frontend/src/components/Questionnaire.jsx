@@ -143,6 +143,7 @@ const Questionnaire = () => {
       // Small delay to ensure context update
       setTimeout(() => {
         console.log('🚀 About to navigate to /explore-careers');
+<<<<<<< HEAD
         // Option 1: Navigate to careers page with recommendations
         try {
           navigate('/explore-careers', { 
@@ -153,6 +154,23 @@ const Questionnaire = () => {
             } 
           });
           console.log('✅ Navigation called');
+=======
+        console.log('📊 Recommendations data:', response.data.recommendations);
+        
+        // Navigate to careers page with recommendations
+        try {
+          const navigationState = { 
+            recommendations: response.data.recommendations || [],
+            questionnaireCompleted: true,
+            showRecommendations: true,
+            fromQuestionnaire: true,
+            timestamp: Date.now()
+          };
+          
+          console.log('📤 Navigation state:', navigationState);
+          navigate('/explore-careers', { state: navigationState });
+          console.log('✅ Navigation called with state');
+>>>>>>> c2fbe43 (Initial commit)
         } catch (navError) {
           console.error('❌ Navigation failed:', navError);
           // Fallback: use window.location
@@ -295,6 +313,7 @@ const Questionnaire = () => {
               </div>
             )}
             
+<<<<<<< HEAD
             {question.question_type === 'multiple_choice' && Array.isArray(question.options) && question.options.length > 0 ? (
               <div className="space-y-3">
                 {/* Check if this is a "select all that apply" question */}
@@ -302,6 +321,17 @@ const Questionnaire = () => {
                   // Multiple selection (checkboxes)
                   question.options.map((option, index) => {
                     const isSelected = Array.isArray(answers[question.id]) && answers[question.id].includes(option.value);
+=======
+            {/* Handle both single_choice and multiple_choice questions */}
+            {((question.question_type === 'single_choice' || question.question_type === 'multiple_choice') && 
+              Array.isArray(question.options) && question.options.length > 0) ? (
+              <div className="space-y-3">
+                {/* Check if this is a "select all that apply" question or multiple_choice */}
+                {(question.question_type === 'multiple_choice' || question.question_text.toLowerCase().includes('select all that apply')) ? (
+                  // Multiple selection (checkboxes)
+                  question.options.map((option, index) => {
+                    const isSelected = Array.isArray(answers[question.id]) && answers[question.id].includes(option);
+>>>>>>> c2fbe43 (Initial commit)
                     return (
                       <label 
                         key={index}
@@ -314,9 +344,15 @@ const Questionnaire = () => {
                         <input
                           type="checkbox"
                           name={`question-${question.id}`}
+<<<<<<< HEAD
                           value={option.value}
                           checked={isSelected}
                           onChange={(e) => handleMultipleAnswerChange(question.id, option.value, e.target.checked)}
+=======
+                          value={option}
+                          checked={isSelected}
+                          onChange={(e) => handleMultipleAnswerChange(question.id, option, e.target.checked)}
+>>>>>>> c2fbe43 (Initial commit)
                           className="sr-only"
                         />
                         <div className={`w-5 h-5 rounded border-2 mr-4 flex items-center justify-center ${
@@ -330,17 +366,29 @@ const Questionnaire = () => {
                             </svg>
                           )}
                         </div>
+<<<<<<< HEAD
                         <span className="text-slate-700 font-medium">{option.label}</span>
+=======
+                        <span className="text-slate-700 font-medium">{option}</span>
+>>>>>>> c2fbe43 (Initial commit)
                       </label>
                     );
                   })
                 ) : (
+<<<<<<< HEAD
                   // Single selection (radio buttons)
+=======
+                  // Single selection (radio buttons) for single_choice questions
+>>>>>>> c2fbe43 (Initial commit)
                   question.options.map((option, index) => (
                     <label 
                       key={index}
                       className={`flex items-center p-4 rounded-lg border-2 cursor-pointer transition-all duration-200 ${
+<<<<<<< HEAD
                         answers[question.id] === option.value
+=======
+                        answers[question.id] === option
+>>>>>>> c2fbe43 (Initial commit)
                           ? 'border-cyan-500 bg-cyan-50'
                           : 'border-slate-200 hover:border-slate-300 hover:bg-slate-50'
                       }`}
@@ -348,12 +396,18 @@ const Questionnaire = () => {
                       <input
                         type="radio"
                         name={`question-${question.id}`}
+<<<<<<< HEAD
                         value={option.value}
                         checked={answers[question.id] === option.value}
+=======
+                        value={option}
+                        checked={answers[question.id] === option}
+>>>>>>> c2fbe43 (Initial commit)
                         onChange={(e) => handleAnswerChange(question.id, e.target.value)}
                         className="sr-only"
                       />
                       <div className={`w-5 h-5 rounded-full border-2 mr-4 flex items-center justify-center ${
+<<<<<<< HEAD
                         answers[question.id] === option.value
                           ? 'border-cyan-500 bg-cyan-500'
                           : 'border-slate-300'
@@ -363,6 +417,17 @@ const Questionnaire = () => {
                         )}
                       </div>
                       <span className="text-slate-700 font-medium">{option.label}</span>
+=======
+                        answers[question.id] === option
+                          ? 'border-cyan-500 bg-cyan-500'
+                          : 'border-slate-300'
+                      }`}>
+                        {answers[question.id] === option && (
+                          <div className="w-2 h-2 bg-white rounded-full"></div>
+                        )}
+                      </div>
+                      <span className="text-slate-700 font-medium">{option}</span>
+>>>>>>> c2fbe43 (Initial commit)
                     </label>
                   ))
                 )}
@@ -370,6 +435,12 @@ const Questionnaire = () => {
             ) : (
               <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
                 <p className="text-yellow-800">No options available for this question.</p>
+<<<<<<< HEAD
+=======
+                <p className="text-yellow-600 text-sm mt-2">
+                  Debug: question_type={question.question_type}, options={JSON.stringify(question.options)}
+                </p>
+>>>>>>> c2fbe43 (Initial commit)
               </div>
             )}
           </div>

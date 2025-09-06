@@ -8,6 +8,7 @@ const ExploreCareers = () => {
   const [loading, setLoading] = useState(true);
   const location = useLocation();
   const navigate = useNavigate();
+<<<<<<< HEAD
   const suggestedCategory = location.state?.suggestedCategory ?? null;
   const recommendations = location.state?.recommendations ?? []; // Better fallback
   const showRecommendations = location.state?.showRecommendations ?? false;
@@ -25,6 +26,59 @@ const ExploreCareers = () => {
       console.log("🧠 Filtered careers being shown:", recommendations);
     }
   }, [recommendations]);
+=======
+  // Extract state with better error handling
+  const state = location.state || {};
+  const recommendations = state.recommendations || [];
+  const fromQuestionnaire = state.fromQuestionnaire || false;
+  const showRecommendations = state.showRecommendations || false;
+  const suggestedCategory = state.suggestedCategory || null;
+  const error = state.error || null;
+
+  useEffect(() => {
+    console.log('🔍 ExploreCareers - Full location state:', location.state);
+    console.log('🔍 ExploreCareers - Recommendations:', recommendations);
+    console.log('🔍 ExploreCareers - From questionnaire:', fromQuestionnaire);
+    console.log('🔍 ExploreCareers - Show recommendations:', showRecommendations);
+    console.log('🔍 ExploreCareers - Suggested category:', suggestedCategory);
+    console.log('🔍 ExploreCareers - Error:', error);
+    
+    // Set careers based on recommendations or default
+    if (recommendations.length > 0) {
+      setCareers(recommendations);
+    } else {
+      // Load default careers if no recommendations
+      loadDefaultCareers();
+    }
+    
+    setLoading(false);
+  }, [location.state]);
+
+  const loadDefaultCareers = () => {
+    // Default careers when no recommendations
+    const defaultCareers = [
+      {
+        title: "Software Engineer",
+        description: "Design and develop software applications",
+        category: "Technology",
+        matchScore: null
+      },
+      {
+        title: "Healthcare Worker", 
+        description: "Provide medical care and support",
+        category: "Healthcare",
+        matchScore: null
+      },
+      {
+        title: "Teacher",
+        description: "Educate and inspire students",
+        category: "Education", 
+        matchScore: null
+      }
+    ];
+    setCareers(defaultCareers);
+  };
+>>>>>>> c2fbe43 (Initial commit)
 
   useEffect(() => {
     const fetchCareers = async () => {

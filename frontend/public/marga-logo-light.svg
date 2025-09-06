@@ -1,0 +1,36 @@
+<!-- Marga.lk Logo - Light Theme Version (Enhanced) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 40" width="180" height="40">
+  <defs>
+    <style>
+      .text {
+        font-family: 'Inter', sans-serif;
+        font-size: 28px;
+        font-weight: 600;
+        fill: #444;
+        filter: url(#glow-light);
+        transition: all 0.3s ease;
+      }
+
+      .triangle {
+        fill: #444;
+        filter: url(#glow-light);
+        transition: all 0.3s ease;
+      }
+    </style>
+
+    <!-- Enhanced glow filter for light mode -->
+    <filter id="glow-light">
+      <feDropShadow dx="0" dy="0" stdDeviation="1.5" flood-color="#e0e0e0" flood-opacity="0.8" />
+      <feDropShadow dx="0" dy="0" stdDeviation="0.5" flood-color="#f5f5f5" flood-opacity="0.6" />
+    </filter>
+  </defs>
+
+  <!-- M -->
+  <text class="text" x="0" y="28">M</text>
+  
+  <!-- Triangle-shaped A (Delta) -->
+  <path class="triangle" d="M30 30 L20 10 L10 30 Z M20 17 L15 26 H25 Z" />
+  
+  <!-- rga.lk -->
+  <text class="text" x="35" y="28">rga.lk</text>
+</svg>

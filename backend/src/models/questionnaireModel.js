@@ -35,9 +35,17 @@ const saveQuestionnaireAnswers = async (userId, answers) => {
     
     // Insert new answers
     for (const answer of answers) {
+<<<<<<< HEAD
       await client.query(
         'INSERT INTO questionnaire_answers (user_id, question_id, answer) VALUES ($1, $2, $3)',
         [userId, answer.questionId, answer.answer]
+=======
+      // Convert answer to JSON format for jsonb column
+      const answerJson = JSON.stringify(answer.answer);
+      await client.query(
+        'INSERT INTO questionnaire_answers (user_id, question_id, answer) VALUES ($1, $2, $3)',
+        [userId, answer.questionId, answerJson]
+>>>>>>> c2fbe43 (Initial commit)
       );
     }
     
@@ -63,7 +71,30 @@ const getUserQuestionnaireAnswers = async (userId) => {
     'SELECT qa.*, qq.question_text, qq.question_type, qq.options, qq.career_weight FROM questionnaire_answers qa JOIN questionnaire_questions qq ON qa.question_id = qq.id WHERE qa.user_id = $1 ORDER BY qa.question_id',
     [userId]
   );
+<<<<<<< HEAD
   return result.rows;
+=======
+  
+  // Parse the JSON answers back to their original format
+  return result.rows.map(row => {
+    let parsedAnswer = row.answer;
+    
+    // If answer is a string, try to parse it as JSON
+    if (typeof row.answer === 'string') {
+      try {
+        parsedAnswer = JSON.parse(row.answer);
+      } catch (error) {
+        // If parsing fails, it might be a simple string value, keep it as is
+        parsedAnswer = row.answer;
+      }
+    }
+    
+    return {
+      ...row,
+      answer: parsedAnswer
+    };
+  });
+>>>>>>> c2fbe43 (Initial commit)
 };
 
 // Calculate career recommendations based on answers
