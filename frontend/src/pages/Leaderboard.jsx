@@ -45,10 +45,10 @@ const Leaderboard = () => {
     return (
       <>
         <Navbar />
-        <div className="min-h-screen bg-slate-950 pt-16 flex items-center justify-center">
+        <div className="main-content bg-white dark:bg-slate-900 text-gray-900 dark:text-white transition-all duration-300 flex items-center justify-center">
           <div className="text-center">
-            <div className="w-20 h-20 border-4 border-yellow-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-            <p className="text-yellow-300 text-lg">Loading leaderboard...</p>
+            <div className="w-20 h-20 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p className="text-cyan-600 dark:text-cyan-300 text-lg">Loading leaderboard...</p>
           </div>
         </div>
       </>
@@ -58,221 +58,166 @@ const Leaderboard = () => {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-slate-950 pt-16">
-        <style>{`
-          /* Professional Leaderboard Styling */
-          
-          @keyframes trophy-bounce {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            25% { transform: translateY(-10px) rotate(-5deg); }
-            75% { transform: translateY(-10px) rotate(5deg); }
-          }
-          
-          @keyframes rank-glow {
-            0%, 100% { 
-              box-shadow: 0 0 20px rgba(251, 191, 36, 0.5),
-                          0 0 40px rgba(251, 191, 36, 0.3),
-                          0 0 60px rgba(251, 191, 36, 0.1);
-            }
-            50% { 
-              box-shadow: 0 0 30px rgba(251, 191, 36, 0.8),
-                          0 0 60px rgba(251, 191, 36, 0.5),
-                          0 0 90px rgba(251, 191, 36, 0.3);
-            }
-          }
-          
-          @keyframes slide-in-rank {
-            from { 
-              opacity: 0; 
-              transform: translateX(-50px);
-            }
-            to { 
-              opacity: 1; 
-              transform: translateX(0);
-            }
-          }
-          
-          .trophy-bounce {
-            animation: trophy-bounce 3s ease-in-out infinite;
-          }
-          
-          .rank-glow {
-            animation: rank-glow 2s ease-in-out infinite;
-          }
-          
-          .rank-row {
-            animation: slide-in-rank 0.5s ease-out forwards;
-          }
-          
-          .cyber-grid {
-            background-image: 
-              linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-          }
-          
-          .neon-text {
-            text-shadow: 0 0 10px currentColor,
-                         0 0 20px currentColor,
-                         0 0 30px currentColor,
-                         0 0 40px currentColor;
-          }
-        `}</style>
-
-        {/* Hero Section */}
-        <div className="relative overflow-hidden bg-gradient-to-br from-amber-900 via-slate-900 to-yellow-900 py-24 cyber-grid">
+      <div className="main-content bg-white dark:bg-slate-900 text-gray-900 dark:text-white transition-all duration-300 overflow-y-auto">
+        {/* Hero Section - Dashboard Style */}
+        <div className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-cyan-900 to-teal-900">
           <div className="absolute inset-0">
-            <div className="absolute top-20 left-20 w-96 h-96 bg-yellow-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-            <div className="absolute bottom-20 right-20 w-80 h-80 bg-amber-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{animationDelay: '2s'}}></div>
+            <div className="absolute top-20 left-20 w-96 h-96 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+            <div className="absolute bottom-20 right-20 w-96 h-96 bg-teal-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{animationDelay: '2s'}}></div>
+            <div className="absolute -top-32 right-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{animationDelay: '4s'}}></div>
+            <div className="absolute -bottom-32 left-40 w-80 h-80 bg-teal-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{animationDelay: '4s'}}></div>
           </div>
           
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="trophy-bounce inline-block mb-6">
-              <span className="text-8xl">🏆</span>
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+            <div className="text-center slide-up">
+              <div className="w-20 h-20 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <span className="text-4xl">🏆</span>
+              </div>
+              <h1 className="text-h1 text-white dark:text-white mb-6">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">Leaderboard</span>
+              </h1>
+              <p className="text-subtitle text-white/80 dark:text-white/80 max-w-3xl mx-auto">
+                Champions of career development. See where you rank among the best.
+              </p>
             </div>
-            <h1 className="text-7xl md:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-600 mb-6 neon-text">
-              LEADERBOARD
-            </h1>
-            <p className="text-2xl text-amber-200 max-w-3xl mx-auto font-light">
-              Champions of career development. See where you rank among the best.
-            </p>
           </div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          {/* Category Filter */}
+          {/* Category Filter - Dashboard Card Style */}
           <div className="mb-16">
+            <div className="text-center mb-12">
+              <h2 className="text-h2 text-gray-900 dark:text-white mb-2">Browse by Category</h2>
+              <p className="text-subtitle text-gray-600 dark:text-gray-400">Filter rankings by career field</p>
+            </div>
             <div className="flex flex-wrap justify-center gap-4">
               {categories.map((category) => (
                 <button
                   key={category.id}
                   onClick={() => setSelectedCategory(category.id)}
-                  className={`px-8 py-4 rounded-2xl font-bold uppercase tracking-wider transition-all duration-300 transform hover:scale-110 ${
+                  className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 ${
                     selectedCategory === category.id
-                      ? `bg-gradient-to-r ${category.color} text-white shadow-lg hover:shadow-xl rank-glow`
-                      : 'bg-slate-800/50 backdrop-blur-lg text-gray-400 hover:text-white hover:bg-slate-700/50 border border-slate-700'
+                      ? 'bg-gradient-to-r from-cyan-500 to-purple-600 text-white shadow-lg hover:shadow-cyan-500/25'
+                      : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:text-cyan-600 dark:hover:text-cyan-400 hover:bg-gray-50 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700'
                   }`}
                 >
-                  <span className="mr-2 text-2xl">{category.icon}</span>
+                  <span className="mr-2 text-lg">{category.icon}</span>
                   {category.name}
                 </button>
               ))}
             </div>
           </div>
 
-          {/* Top 3 Podium */}
+          {/* Top 3 Podium - Dashboard Card Style */}
           {filteredData.length >= 3 && (
             <div className="mb-16">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-end max-w-4xl mx-auto">
+              <div className="text-center mb-12">
+                <h2 className="text-h2 text-gray-900 dark:text-white mb-2">Top Performers</h2>
+                <p className="text-subtitle text-gray-600 dark:text-gray-400">The best of the best</p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-end max-w-4xl mx-auto">
                 {/* Second Place */}
                 {filteredData[1] && (
                   <div className="text-center transform hover:scale-105 transition-all duration-300">
-                    <div className="bg-gradient-to-br from-gray-400 to-gray-600 p-8 rounded-3xl shadow-2xl relative overflow-hidden">
-                      <div className="absolute inset-0 bg-white/10 backdrop-blur-sm"></div>
-                      <div className="relative z-10">
-                        <div className="text-6xl mb-4">🥈</div>
-                        <h3 className="text-2xl font-bold text-white mb-2">{filteredData[1].username}</h3>
-                        <p className="text-gray-200 mb-2">{filteredData[1].career}</p>
-                        <div className="text-4xl font-black text-white neon-text">{filteredData[1].score}</div>
-                      </div>
+                    <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 border border-gray-200 dark:border-gray-700 hover:shadow-xl hover:border-gray-300 dark:hover:border-gray-600">
+                      <div className="text-4xl mb-4">🥈</div>
+                      <h3 className="text-h3 text-gray-900 dark:text-white mb-2">{filteredData[1].username}</h3>
+                      <p className="text-small text-gray-600 dark:text-gray-400 mb-3">{filteredData[1].career}</p>
+                      <div className="text-h2 text-gray-900 dark:text-white mb-3">{filteredData[1].score}</div>
+                      <div className="text-small font-semibold text-gray-500 dark:text-gray-400">2ND PLACE</div>
                     </div>
-                    <div className="mt-4 text-2xl font-bold text-gray-400">2ND PLACE</div>
                   </div>
                 )}
 
                 {/* First Place */}
                 {filteredData[0] && (
-                  <div className="text-center transform hover:scale-105 transition-all duration-300 md:-mt-8">
-                    <div className="bg-gradient-to-br from-yellow-400 to-amber-600 p-10 rounded-3xl shadow-2xl relative overflow-hidden rank-glow">
-                      <div className="absolute inset-0 bg-white/20 backdrop-blur-sm"></div>
-                      <div className="relative z-10">
-                        <div className="text-8xl mb-4 trophy-bounce">👑</div>
-                        <h3 className="text-3xl font-bold text-white mb-2">{filteredData[0].username}</h3>
-                        <p className="text-yellow-100 mb-2">{filteredData[0].career}</p>
-                        <div className="text-5xl font-black text-white neon-text">{filteredData[0].score}</div>
-                      </div>
+                  <div className="text-center transform hover:scale-105 transition-all duration-300 md:-mt-4">
+                    <div className="bg-gradient-to-br from-cyan-500 to-purple-600 rounded-2xl shadow-2xl p-8 border border-cyan-400 dark:border-purple-500">
+                      <div className="text-6xl mb-4">👑</div>
+                      <h3 className="text-h2 text-white mb-2">{filteredData[0].username}</h3>
+                      <p className="text-subtitle text-white/90 mb-3">{filteredData[0].career}</p>
+                      <div className="text-h1 text-white mb-3">{filteredData[0].score}</div>
+                      <div className="text-small font-bold text-cyan-200">CHAMPION</div>
                     </div>
-                    <div className="mt-4 text-3xl font-black text-yellow-400 neon-text">CHAMPION</div>
                   </div>
                 )}
 
                 {/* Third Place */}
                 {filteredData[2] && (
                   <div className="text-center transform hover:scale-105 transition-all duration-300">
-                    <div className="bg-gradient-to-br from-orange-600 to-orange-800 p-8 rounded-3xl shadow-2xl relative overflow-hidden">
-                      <div className="absolute inset-0 bg-white/10 backdrop-blur-sm"></div>
-                      <div className="relative z-10">
-                        <div className="text-6xl mb-4">🥉</div>
-                        <h3 className="text-2xl font-bold text-white mb-2">{filteredData[2].username}</h3>
-                        <p className="text-orange-200 mb-2">{filteredData[2].career}</p>
-                        <div className="text-4xl font-black text-white neon-text">{filteredData[2].score}</div>
-                      </div>
+                    <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 border border-gray-200 dark:border-gray-700 hover:shadow-xl hover:border-gray-300 dark:hover:border-gray-600">
+                      <div className="text-4xl mb-4">🥉</div>
+                      <h3 className="text-h3 text-gray-900 dark:text-white mb-2">{filteredData[2].username}</h3>
+                      <p className="text-small text-gray-600 dark:text-gray-400 mb-3">{filteredData[2].career}</p>
+                      <div className="text-h2 text-gray-900 dark:text-white mb-3">{filteredData[2].score}</div>
+                      <div className="text-small font-semibold text-gray-500 dark:text-gray-400">3RD PLACE</div>
                     </div>
-                    <div className="mt-4 text-2xl font-bold text-orange-400">3RD PLACE</div>
                   </div>
                 )}
               </div>
             </div>
           )}
 
-          {/* Full Leaderboard */}
+          {/* Full Leaderboard - Dashboard Card Style */}
           <div className="mb-16">
-            <h2 className="text-4xl font-black text-white text-center mb-12 uppercase tracking-wider">Complete Rankings</h2>
-            <div className="bg-slate-900/50 backdrop-blur-lg rounded-3xl overflow-hidden border border-slate-800">
+            <div className="text-center mb-12">
+              <h2 className="text-h2 text-gray-900 dark:text-white mb-2">Complete Rankings</h2>
+              <p className="text-subtitle text-gray-600 dark:text-gray-400">See where everyone stands</p>
+            </div>
+            <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="w-full">
-                  <thead className="bg-gradient-to-r from-slate-800 to-slate-900">
+                  <thead className="bg-gray-50 dark:bg-gray-700">
                     <tr>
-                      <th className="px-6 py-6 text-left text-sm font-bold text-yellow-400 uppercase tracking-wider">Rank</th>
-                      <th className="px-6 py-6 text-left text-sm font-bold text-yellow-400 uppercase tracking-wider">Player</th>
-                      <th className="px-6 py-6 text-left text-sm font-bold text-yellow-400 uppercase tracking-wider">Career</th>
-                      <th className="px-6 py-6 text-left text-sm font-bold text-yellow-400 uppercase tracking-wider">Score</th>
-                      <th className="px-6 py-6 text-left text-sm font-bold text-yellow-400 uppercase tracking-wider">Level</th>
+                      <th className="px-6 py-6 text-left text-small font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider">Rank</th>
+                      <th className="px-6 py-6 text-left text-small font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider">Player</th>
+                      <th className="px-6 py-6 text-left text-small font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider">Career</th>
+                      <th className="px-6 py-6 text-left text-small font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider">Score</th>
+                      <th className="px-6 py-6 text-left text-small font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider">Progress</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-800">
+                  <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
                     {filteredData.map((item, index) => (
                       <tr 
                         key={item.id} 
-                        className="rank-row hover:bg-slate-800/50 transition-colors duration-200"
-                        style={{animationDelay: `${index * 0.05}s`}}
+                        className="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200"
                       >
                         <td className="px-6 py-6">
                           <div className="flex items-center">
-                            <span className="text-3xl mr-3">{getRankIcon(index + 1)}</span>
-                            <span className="font-bold text-xl text-gray-300">#{index + 1}</span>
+                            <span className="text-2xl mr-3">{getRankIcon(index + 1)}</span>
+                            <span className="font-bold text-lg text-gray-900 dark:text-white">#{index + 1}</span>
                           </div>
                         </td>
                         <td className="px-6 py-6">
                           <div className="flex items-center">
-                            <div className="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl flex items-center justify-center mr-4 shadow-lg">
+                            <div className="w-12 h-12 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-2xl flex items-center justify-center mr-4 shadow-lg">
                               <span className="text-white font-bold text-lg">
                                 {item.username.charAt(0).toUpperCase()}
                               </span>
                             </div>
                             <div>
-                              <p className="font-bold text-lg text-white">{item.username}</p>
-                              <p className="text-sm text-gray-500">Level {Math.floor(item.score / 100)}</p>
+                              <p className="font-bold text-lg text-gray-900 dark:text-white">{item.username}</p>
+                              <p className="text-small text-gray-500 dark:text-gray-400">Level {Math.floor(item.score / 100)}</p>
                             </div>
                           </div>
                         </td>
                         <td className="px-6 py-6">
-                          <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-bold bg-gradient-to-r from-blue-600 to-cyan-600 text-white">
+                          <span className="inline-flex items-center px-4 py-2 rounded-full text-small font-medium bg-gradient-to-r from-cyan-500 to-purple-600 text-white">
                             {item.career}
                           </span>
                         </td>
                         <td className="px-6 py-6">
                           <div className="flex items-center">
-                            <span className="font-black text-3xl text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-600">
+                            <span className="font-bold text-h3 text-gray-900 dark:text-white">
                               {item.score}
                             </span>
-                            <span className="text-sm text-gray-500 ml-2">pts</span>
+                            <span className="text-small text-gray-500 dark:text-gray-400 ml-2">pts</span>
                           </div>
                         </td>
                         <td className="px-6 py-6">
-                          <div className="w-32 bg-slate-700 rounded-full h-3 overflow-hidden">
+                          <div className="w-32 bg-gray-200 dark:bg-gray-600 rounded-full h-3 overflow-hidden">
                             <div 
-                              className="h-3 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 transition-all duration-1000"
+                              className="h-3 rounded-full bg-gradient-to-r from-cyan-500 to-teal-500 transition-all duration-1000"
                               style={{ width: `${Math.min((item.score / 1500) * 100, 100)}%` }}
                             ></div>
                           </div>

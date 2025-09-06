@@ -88,10 +88,14 @@ const Dashboard = () => {
     <>
       <Navbar />
 <<<<<<< HEAD
+<<<<<<< HEAD
       <div className="min-h-screen bg-slate-50 pt-16">
 =======
       <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white pt-20 transition-all duration-300">
 >>>>>>> c2fbe43 (Initial commit)
+=======
+      <div className="main-content bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-all duration-300">
+>>>>>>> 4199d3e (feat: changed ui)
         <style>{`
           /* Professional Dashboard Styling */
           
@@ -149,27 +153,45 @@ const Dashboard = () => {
           }
         `}</style>
 
-        {/* Hero Section with Animated Background */}
-        <div className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-cyan-900 to-teal-900">
+        {/* Hero Section with Personalization */}
+        <div className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
           <div className="absolute inset-0">
-            <div className="absolute top-20 left-10 w-72 h-72 bg-cyan-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 float-animation"></div>
-            <div className="absolute top-40 right-20 w-96 h-96 bg-teal-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 float-animation" style={{animationDelay: '2s'}}></div>
-            <div className="absolute -bottom-32 left-40 w-80 h-80 bg-emerald-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 float-animation" style={{animationDelay: '4s'}}></div>
+            <div className="absolute top-20 left-10 w-72 h-72 bg-purple-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 float-animation"></div>
+            <div className="absolute top-40 right-20 w-96 h-96 bg-cyan-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 float-animation" style={{animationDelay: '2s'}}></div>
+            <div className="absolute -bottom-32 left-40 w-80 h-80 bg-teal-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 float-animation" style={{animationDelay: '4s'}}></div>
           </div>
           
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
             <div className="text-center slide-up">
-              <h1 className="text-display text-white mb-6">
-                {t('dashboard.welcome')}, <span className="gradient-text">{user?.name || 'Guest'}</span>
-              </h1>
-              <p className="text-body-large text-cyan-100 max-w-3xl mx-auto leading-relaxed">
+              <div className="flex items-center justify-center mb-6">
+                {user?.avatar ? (
+                  <img 
+                    src={user.avatar} 
+                    alt={user.name} 
+                    className="w-20 h-20 rounded-full border-4 border-white/20 mr-4"
+                  />
+                ) : (
+                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-purple-400 to-cyan-400 flex items-center justify-center text-white text-2xl font-bold mr-4">
+                    {user?.name ? user.name.charAt(0).toUpperCase() : 'G'}
+                  </div>
+                )}
+                <div className="text-left">
+                  <h1 className="text-h1 text-white mb-2">
+                    Welcome back, <span className="gradient-text">{user?.name || 'Guest'}</span>
+                  </h1>
+                  <p className="text-subtitle text-white/80">
+                    {user?.email || 'Ready to continue your journey?'}
+                  </p>
+                </div>
+              </div>
+              <p className="text-body-large text-white/90 max-w-3xl mx-auto leading-relaxed">
                 {t('dashboard.subtitle')}
               </p>
             </div>
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           {/* Career Recommendations Modal */}
           {showRecommendations && recommendations.length > 0 && (
             <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
@@ -307,6 +329,7 @@ const Dashboard = () => {
             </div>
           )}
 
+<<<<<<< HEAD
           {/* Stats Cards with Professional Styling */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12 -mt-16 relative z-20">
 <<<<<<< HEAD
@@ -388,32 +411,91 @@ const Dashboard = () => {
                 </div>
               </div>
             </div>
+=======
+          {/* Stats Cards - Standardized Design */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-12 -mt-16 relative z-20">
+            {[
+              { 
+                label: t('dashboard.stats.quizzes'), 
+                value: stats.quizzesCompleted, 
+                icon: "📝", 
+                color: "from-purple-500 to-purple-600",
+                bgColor: "bg-purple-50 dark:bg-purple-900/20"
+              },
+              { 
+                label: t('dashboard.stats.goals'), 
+                value: stats.careerGoals, 
+                icon: "🎯", 
+                color: "from-cyan-500 to-cyan-600",
+                bgColor: "bg-cyan-50 dark:bg-cyan-900/20"
+              },
+              { 
+                label: t('dashboard.stats.progress'), 
+                value: `${stats.roadmapProgress}%`, 
+                icon: "📊", 
+                color: "from-teal-500 to-teal-600",
+                bgColor: "bg-teal-50 dark:bg-teal-900/20"
+              },
+              { 
+                label: t('dashboard.stats.mentors'), 
+                value: stats.mentorConnections, 
+                icon: "👥", 
+                color: "from-indigo-500 to-indigo-600",
+                bgColor: "bg-indigo-50 dark:bg-indigo-900/20"
+              }
+            ].map((stat, index) => (
+              <div key={index} className="card p-6 card-hover">
+                <div className="flex items-center justify-between">
+                  <div className="flex-1">
+                    <p className="text-small text-gray-600 dark:text-gray-400 uppercase tracking-wider font-medium">{stat.label}</p>
+                    <p className="text-h2 text-gray-900 dark:text-white mt-2">{stat.value}</p>
+                  </div>
+                  <div className={`w-16 h-16 bg-gradient-to-br ${stat.color} rounded-2xl flex items-center justify-center text-white text-2xl shadow-lg`}>
+                    {stat.icon}
+                  </div>
+                </div>
+              </div>
+            ))}
+>>>>>>> 4199d3e (feat: changed ui)
           </div>
 
-          {/* Quick Actions with Modern Design */}
+          {/* Quick Actions - Separated Design */}
           <div className="mb-12">
+<<<<<<< HEAD
 <<<<<<< HEAD
             <h2 className="text-3xl font-bold text-slate-900 mb-8">{t('dashboard.quickActions')}</h2>
 =======
             <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-8">{t('dashboard.quickActions')}</h2>
 >>>>>>> c2fbe43 (Initial commit)
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+=======
+            <div className="text-center mb-8">
+              <h2 className="text-h2 text-gray-900 dark:text-white mb-2">{t('dashboard.quickActions')}</h2>
+              <p className="text-subtitle text-gray-600 dark:text-gray-400">Choose your next step in your career journey</p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+>>>>>>> 4199d3e (feat: changed ui)
               {quickActions.map((action, index) => (
                 <Link
                   key={index}
                   to={action.link}
 <<<<<<< HEAD
+<<<<<<< HEAD
                   className="group relative overflow-hidden bg-white rounded-3xl shadow-lg p-8 border border-slate-200 hover:border-transparent transition-all duration-500 card-hover"
 =======
                   className="group relative overflow-hidden bg-white dark:bg-gray-800 rounded-3xl shadow-lg p-8 border border-slate-200 dark:border-gray-700 hover:border-transparent transition-all duration-500 card-hover"
 >>>>>>> c2fbe43 (Initial commit)
+=======
+                  className="group bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 border border-gray-200 dark:border-gray-700 hover:shadow-xl hover:border-purple-300 dark:hover:border-purple-600 transition-all duration-300 transform hover:-translate-y-1"
+>>>>>>> 4199d3e (feat: changed ui)
                   style={{animationDelay: `${index * 0.1}s`}}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${action.color}"></div>
-                  <div className="relative z-10">
-                    <div className="text-5xl mb-4 transform group-hover:scale-110 transition-transform duration-500">{action.icon}</div>
-                    <h3 className="text-xl font-semibold action-card-text group-hover:text-white mb-2 transition-colors duration-500">{action.title}</h3>
-                    <p className="text-sm action-card-desc group-hover:text-white/90 transition-colors duration-500">{action.description}</p>
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-gradient-to-br from-purple-100 to-purple-200 dark:from-purple-900/30 dark:to-purple-800/30 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                      <span className="text-3xl">{action.icon}</span>
+                    </div>
+                    <h3 className="text-h3 text-gray-900 dark:text-white mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">{action.title}</h3>
+                    <p className="text-body text-gray-600 dark:text-gray-400">{action.description}</p>
                   </div>
                 </Link>
               ))}
@@ -422,6 +504,7 @@ const Dashboard = () => {
 
           {/* Recent Activity & Progress with Modern Cards */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<<<<<<< HEAD
             {/* Recent Activity */}
 <<<<<<< HEAD
             <div className="bg-white rounded-3xl shadow-xl p-8 border border-slate-200">
@@ -448,12 +531,37 @@ const Dashboard = () => {
                       <p className="font-medium text-slate-900 dark:text-white">{activity.action}</p>
                       <p className="text-sm text-slate-500 dark:text-gray-400 mt-1">{activity.time}</p>
 >>>>>>> c2fbe43 (Initial commit)
+=======
+            {/* Recent Activity - Timeline Design */}
+            <div className="card">
+              <h3 className="text-h3 text-gray-900 dark:text-white mb-6">{t('dashboard.recentActivity')}</h3>
+              <div className="space-y-6">
+                {recentActivities.map((activity, index) => (
+                  <div key={index} className="flex items-start space-x-4 relative">
+                    <div className="flex-shrink-0">
+                      <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
+                        activity.type === 'quiz' ? 'bg-purple-100 dark:bg-purple-900/30' :
+                        activity.type === 'goal' ? 'bg-cyan-100 dark:bg-cyan-900/30' : 'bg-teal-100 dark:bg-teal-900/30'
+                      }`}>
+                        <span className="text-lg">
+                          {activity.type === 'quiz' ? '🧠' : activity.type === 'goal' ? '🎯' : '👥'}
+                        </span>
+                      </div>
+                      {index < recentActivities.length - 1 && (
+                        <div className="absolute top-10 left-5 w-0.5 h-6 bg-gray-200 dark:bg-gray-700"></div>
+                      )}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-body font-medium text-gray-900 dark:text-white">{activity.action}</p>
+                      <p className="text-small text-gray-500 dark:text-gray-400 mt-1">{activity.time}</p>
+>>>>>>> 4199d3e (feat: changed ui)
                     </div>
                   </div>
                 ))}
               </div>
             </div>
 
+<<<<<<< HEAD
             {/* Progress Overview */}
 <<<<<<< HEAD
             <div className="bg-white rounded-3xl shadow-xl p-8 border border-slate-200">
@@ -468,12 +576,48 @@ const Dashboard = () => {
 =======
             <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-8 border border-slate-200 dark:border-gray-700">
               <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">{t('dashboard.yourProgress')}</h3>
+=======
+            {/* Progress Overview - Brand Colors */}
+            <div className="card">
+              <h3 className="text-h3 text-gray-900 dark:text-white mb-6">{t('dashboard.yourProgress')}</h3>
+>>>>>>> 4199d3e (feat: changed ui)
               <div className="space-y-6">
-                <div>
-                  <div className="flex justify-between text-sm mb-3">
-                    <span className="text-slate-700 dark:text-gray-300 font-medium">{t('dashboard.progress.quiz')}</span>
-                    <span className="font-bold text-slate-900 dark:text-white">100%</span>
+                {[
+                  { 
+                    label: t('dashboard.progress.quiz'), 
+                    value: 100, 
+                    color: "from-purple-500 to-purple-600",
+                    bgColor: "bg-purple-100 dark:bg-purple-900/20"
+                  },
+                  { 
+                    label: t('dashboard.progress.roadmap'), 
+                    value: stats.roadmapProgress, 
+                    color: "from-cyan-500 to-cyan-600",
+                    bgColor: "bg-cyan-100 dark:bg-cyan-900/20"
+                  },
+                  { 
+                    label: t('dashboard.progress.mentors'), 
+                    value: Math.round((stats.mentorConnections/5)*100), 
+                    color: "from-teal-500 to-teal-600",
+                    bgColor: "bg-teal-100 dark:bg-teal-900/20",
+                    suffix: "/5"
+                  }
+                ].map((progress, index) => (
+                  <div key={index}>
+                    <div className="flex justify-between text-small mb-3">
+                      <span className="text-gray-700 dark:text-gray-300 font-medium">{progress.label}</span>
+                      <span className="font-bold text-gray-900 dark:text-white">
+                        {progress.value}%{progress.suffix || ''}
+                      </span>
+                    </div>
+                    <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3 overflow-hidden">
+                      <div 
+                        className={`bg-gradient-to-r ${progress.color} h-3 rounded-full transition-all duration-1000`} 
+                        style={{ width: `${progress.value}%` }}
+                      ></div>
+                    </div>
                   </div>
+<<<<<<< HEAD
                   <div className="w-full bg-slate-200 dark:bg-gray-700 rounded-full h-3 overflow-hidden">
 >>>>>>> c2fbe43 (Initial commit)
                     <div className="bg-gradient-to-r from-emerald-400 to-emerald-600 h-3 rounded-full transition-all duration-1000" style={{ width: '100%' }}></div>
@@ -513,32 +657,35 @@ const Dashboard = () => {
                     <div className="bg-gradient-to-r from-violet-400 to-violet-600 h-3 rounded-full transition-all duration-1000" style={{ width: `${(stats.mentorConnections/5)*100}%` }}></div>
                   </div>
                 </div>
+=======
+                ))}
+>>>>>>> 4199d3e (feat: changed ui)
               </div>
             </div>
           </div>
 
-          {/* Call to Action */}
+          {/* Call to Action - Brand Consistent */}
           <div className="mt-12 text-center">
-            <div className="bg-gradient-to-r from-cyan-600 to-teal-600 rounded-3xl p-12 text-white relative overflow-hidden">
-            <div className="absolute inset-0">
+            <div className="bg-gradient-to-r from-purple-600 to-cyan-600 rounded-3xl p-12 text-white relative overflow-hidden">
+              <div className="absolute inset-0">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
                 <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full blur-3xl"></div>
               </div>
               <div className="relative z-10">
-                <h3 className="text-3xl font-bold mb-4">{t('dashboard.cta.title')}</h3>
-                <p className="text-cyan-100 mb-8 max-w-2xl mx-auto text-lg">
+                <h3 className="text-h2 text-white mb-4">{t('dashboard.cta.title')}</h3>
+                <p className="text-subtitle text-white/90 mb-8 max-w-2xl mx-auto">
                   {t('dashboard.cta.subtitle')}
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Link
                     to="/quizzes"
-                    className="bg-white text-cyan-600 hover:bg-cyan-50 font-semibold py-4 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg"
+                    className="btn-primary bg-white text-purple-600 hover:bg-purple-50 py-4 px-8 text-lg"
                   >
                     {t('dashboard.cta.startQuiz')}
                   </Link>
                   <Link
                     to="/explore-careers"
-                    className="border-2 border-white text-white hover:bg-white hover:text-cyan-600 font-semibold py-4 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105"
+                    className="btn-secondary border-2 border-white text-white hover:bg-white hover:text-purple-600 py-4 px-8 text-lg"
                   >
                     {t('dashboard.cta.exploreCareers')}
                   </Link>
@@ -551,9 +698,12 @@ const Dashboard = () => {
 <<<<<<< HEAD
 =======
       
+<<<<<<< HEAD
       {/* Floating Theme Toggle */}
       <ThemeToggle variant="floating" />
 >>>>>>> c2fbe43 (Initial commit)
+=======
+>>>>>>> 4199d3e (feat: changed ui)
     </>
   );
 };

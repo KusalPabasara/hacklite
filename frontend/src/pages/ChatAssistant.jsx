@@ -195,7 +195,7 @@ function ChatAssistant() {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-slate-900 pt-16">
+      <div className="main-content bg-white dark:bg-slate-900 text-gray-900 dark:text-white transition-all duration-300 overflow-y-auto">
         <style>{`
           /* Professional Chat Assistant Styling */
           
@@ -302,49 +302,58 @@ function ChatAssistant() {
           }
         `}</style>
 
-        {/* Header */}
-        <div className="bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900 py-12">
-          <div className="max-w-4xl mx-auto px-4 text-center">
-            <div className="flex items-center justify-center mb-6">
-              <div className="w-20 h-20 bg-gradient-to-br from-cyan-400 to-purple-400 rounded-full flex items-center justify-center float-animation pulse-glow">
+        {/* Header - Dashboard Style */}
+        <div className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-cyan-900 to-teal-900">
+          <div className="absolute inset-0">
+            <div className="absolute top-20 left-20 w-96 h-96 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+            <div className="absolute bottom-20 right-20 w-96 h-96 bg-teal-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{animationDelay: '2s'}}></div>
+            <div className="absolute -top-32 right-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{animationDelay: '4s'}}></div>
+            <div className="absolute -bottom-32 left-40 w-80 h-80 bg-teal-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{animationDelay: '4s'}}></div>
+          </div>
+          
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+            <div className="text-center slide-up">
+              <div className="w-20 h-20 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
                 <span className="text-4xl">🤖</span>
               </div>
+              <h1 className="text-h1 text-white dark:text-white mb-6">
+                MetaMind <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">Assistant</span>
+              </h1>
+              <p className="text-subtitle text-white/80 dark:text-white/80 max-w-3xl mx-auto">
+                Your AI-powered tutor and career counselor for Sri Lankan students. Ask me anything - from career guidance to academic help, life advice, and general knowledge!
+              </p>
             </div>
-            <h1 className="text-heading-1 text-white mb-4">
-              MetaMind <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">Assistant</span>
-            </h1>
-            <p className="text-body-large text-gray-300 max-w-2xl mx-auto">
-              Your AI-powered tutor and career counselor for Sri Lankan students. Ask me anything - from career guidance to academic help, life advice, and general knowledge!
-            </p>
           </div>
         </div>
 
-        <div className="max-w-4xl mx-auto px-4 py-8">
-          {/* Suggested Questions */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          {/* Suggested Questions - Dashboard Card Style */}
           {messages.length === 1 && (
-            <div className="mb-8">
-              <h3 className="text-lg font-semibold text-white mb-4">💡 Try asking me anything:</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                {suggestedQuestions.slice(0, 9).map((question, index) => (
-                  <button
-                    key={index}
-                    onClick={() => handleSuggestedQuestion(question)}
-                    className="text-left p-3 bg-slate-800/50 border border-slate-700 rounded-xl hover:bg-slate-700/50 transition-all duration-300 hover:border-cyan-500/50 group"
-                  >
-                    <span className="text-sm text-gray-300 group-hover:text-cyan-300 transition-colors">
-                      {question}
-                    </span>
-                  </button>
-                ))}
+            <div className="mb-16">
+              <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl p-8 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-h2 text-gray-900 dark:text-white mb-6 text-center">💡 Try asking me anything:</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {suggestedQuestions.slice(0, 9).map((question, index) => (
+                    <button
+                      key={index}
+                      onClick={() => handleSuggestedQuestion(question)}
+                      className="text-left p-4 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-2xl hover:bg-gray-100 dark:hover:bg-gray-600 transition-all duration-300 hover:border-cyan-500 dark:hover:border-cyan-400 group"
+                    >
+                      <span className="text-small text-gray-700 dark:text-gray-300 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
+                        {question}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+                <p className="text-small text-gray-600 dark:text-gray-400 mt-4 text-center">
+                  🎓 Career guidance • 📚 Academic help • 💡 Life advice • 🌟 General knowledge
+                </p>
               </div>
-              <p className="text-sm text-gray-400 mt-3 text-center">
-                🎓 Career guidance • 📚 Academic help • 💡 Life advice • 🌟 General knowledge
-              </p>
             </div>
           )}
 
-          {/* Chat Container */}
-          <div className="bg-slate-800/50 backdrop-blur-lg border border-slate-700 rounded-2xl overflow-hidden">
+          {/* Chat Container - Dashboard Card Style */}
+          <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden">
             {/* Messages Area */}
             <div className="h-96 overflow-y-auto p-6 space-y-4 scroll-smooth" style={{ scrollBehavior: 'smooth' }}>
               {messages.map((message, index) => (
@@ -355,8 +364,8 @@ function ChatAssistant() {
                   <div
                     className={`max-w-xs lg:max-w-md px-4 py-3 rounded-2xl ${
                       message.sender === "user"
-                        ? "bg-gradient-to-r from-cyan-600 to-blue-600 text-white"
-                        : "bg-slate-700 text-gray-100"
+                        ? "bg-gradient-to-r from-cyan-500 to-teal-600 text-white"
+                        : "bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100"
                     }`}
                   >
                     <div className="flex items-start space-x-2">
@@ -365,44 +374,44 @@ function ChatAssistant() {
                       )}
                       <div className="flex-1">
                         {message.sender === "bot" ? (
-                          <div className="text-sm leading-relaxed chat-message prose prose-invert prose-sm max-w-none">
+                          <div className="text-small leading-relaxed chat-message prose prose-invert prose-sm max-w-none">
                             <ReactMarkdown
                               components={{
                                 p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
                                 ul: ({ children }) => <ul className="list-disc list-inside mb-2 space-y-1">{children}</ul>,
                                 ol: ({ children }) => <ol className="list-decimal list-inside mb-2 space-y-1">{children}</ol>,
-                                li: ({ children }) => <li className="text-sm">{children}</li>,
-                                strong: ({ children }) => <strong className="font-semibold text-white">{children}</strong>,
+                                li: ({ children }) => <li className="text-small">{children}</li>,
+                                strong: ({ children }) => <strong className="font-semibold text-gray-900 dark:text-white">{children}</strong>,
                                 em: ({ children }) => <em className="italic">{children}</em>,
-                                code: ({ children }) => <code className="bg-slate-600 px-1 py-0.5 rounded text-xs">{children}</code>,
-                                pre: ({ children }) => <pre className="bg-slate-600 p-2 rounded text-xs overflow-x-auto">{children}</pre>,
-                                blockquote: ({ children }) => <blockquote className="border-l-4 border-cyan-400 pl-4 italic">{children}</blockquote>,
+                                code: ({ children }) => <code className="bg-gray-200 dark:bg-gray-600 px-1 py-0.5 rounded text-xs">{children}</code>,
+                                pre: ({ children }) => <pre className="bg-gray-200 dark:bg-gray-600 p-2 rounded text-xs overflow-x-auto">{children}</pre>,
+                                blockquote: ({ children }) => <blockquote className="border-l-4 border-cyan-500 pl-4 italic">{children}</blockquote>,
                                 a: ({ href, children }) => (
                                   <a 
                                     href={href} 
                                     target="_blank" 
                                     rel="noopener noreferrer"
-                                    className="text-cyan-400 hover:text-cyan-300 underline"
+                                    className="text-cyan-600 dark:text-cyan-400 hover:text-cyan-500 dark:hover:text-cyan-300 underline"
                                   >
                                     {children}
                                   </a>
                                 ),
-                                h1: ({ children }) => <h1 className="text-lg font-bold mb-2 text-white">{children}</h1>,
-                                h2: ({ children }) => <h2 className="text-base font-bold mb-2 text-white">{children}</h2>,
-                                h3: ({ children }) => <h3 className="text-sm font-bold mb-1 text-white">{children}</h3>,
-                                hr: () => <hr className="border-slate-600 my-3" />
+                                h1: ({ children }) => <h1 className="text-lg font-bold mb-2 text-gray-900 dark:text-white">{children}</h1>,
+                                h2: ({ children }) => <h2 className="text-base font-bold mb-2 text-gray-900 dark:text-white">{children}</h2>,
+                                h3: ({ children }) => <h3 className="text-sm font-bold mb-1 text-gray-900 dark:text-white">{children}</h3>,
+                                hr: () => <hr className="border-gray-300 dark:border-gray-600 my-3" />
                               }}
                             >
                               {message.content}
                             </ReactMarkdown>
                           </div>
                         ) : (
-                          <p className="text-sm leading-relaxed whitespace-pre-wrap">
+                          <p className="text-small leading-relaxed whitespace-pre-wrap">
                             {message.content}
                           </p>
                         )}
                         <p className={`text-xs mt-2 ${
-                          message.sender === "user" ? "text-cyan-100" : "text-gray-400"
+                          message.sender === "user" ? "text-cyan-100" : "text-gray-500 dark:text-gray-400"
                         }`}>
                           {formatTime(message.timestamp)}
                         </p>
@@ -415,13 +424,13 @@ function ChatAssistant() {
               {/* Loading indicator */}
               {isLoading && (
                 <div className="flex justify-start">
-                  <div className="bg-slate-700 text-gray-100 px-4 py-3 rounded-2xl">
+                  <div className="bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100 px-4 py-3 rounded-2xl">
                     <div className="flex items-center space-x-2">
                       <span className="text-lg">🤖</span>
                       <div className="flex space-x-1">
-                        <div className="w-2 h-2 bg-cyan-400 rounded-full animate-bounce"></div>
-                        <div className="w-2 h-2 bg-cyan-400 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
-                        <div className="w-2 h-2 bg-cyan-400 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
+                        <div className="w-2 h-2 bg-cyan-500 rounded-full animate-bounce"></div>
+                        <div className="w-2 h-2 bg-cyan-500 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
+                        <div className="w-2 h-2 bg-cyan-500 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
                       </div>
                     </div>
                   </div>
@@ -432,7 +441,7 @@ function ChatAssistant() {
             </div>
 
             {/* Input Area */}
-            <div className="border-t border-slate-700 p-4">
+            <div className="border-t border-gray-200 dark:border-gray-700 p-4">
               <div className="flex space-x-3">
                 <div className="flex-1 relative">
                   <textarea
@@ -440,7 +449,7 @@ function ChatAssistant() {
                     onChange={(e) => setCurrentMessage(e.target.value)}
                     onKeyPress={handleKeyPress}
                     placeholder={t('chat.typeMessage') || "Ask me about career guidance, VTA programs, NTS applications, or German Tech courses..."}
-                    className="w-full p-3 bg-slate-700 border border-slate-600 rounded-xl text-white placeholder-gray-400 resize-none focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500"
+                    className="w-full p-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 resize-none focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 transition-all duration-300"
                     rows="2"
                     disabled={isLoading}
                   />
@@ -481,7 +490,7 @@ function ChatAssistant() {
                 <button
                   onClick={sendMessage}
                   disabled={!currentMessage.trim() || isLoading}
-                  className="px-6 py-3 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 disabled:from-gray-600 disabled:to-gray-700 text-white rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 disabled:scale-100 disabled:cursor-not-allowed"
+                  className="px-6 py-3 bg-gradient-to-r from-cyan-500 to-teal-600 hover:from-cyan-600 hover:to-teal-700 disabled:from-gray-400 disabled:to-gray-500 text-white rounded-xl font-semibold transition-all duration-300 transform hover:scale-[1.02] disabled:scale-100 disabled:cursor-not-allowed"
                 >
                   {isLoading ? (
                     <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
@@ -494,23 +503,23 @@ function ChatAssistant() {
               {/* Voice Input Status */}
               {speechSupported && (
                 <div className="mt-2 text-center">
-                  <p className="text-xs text-gray-400">
+                  <p className="text-xs text-gray-500 dark:text-gray-400">
                     {t('chat.voiceInput') || 'Voice input available'} • {i18n.language === 'si' ? 'සිංහල' : i18n.language === 'ta' ? 'தமிழ்' : 'English'}
                   </p>
                 </div>
               )}
               
-              <p className="text-xs text-gray-400 mt-2">
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
                 Press Enter to send, Shift+Enter for new line
               </p>
             </div>
           </div>
 
-          {/* Footer Info */}
-          <div className="mt-8 text-center">
-            <div className="bg-slate-800/30 border border-slate-700 rounded-xl p-6">
-              <h3 className="text-lg font-semibold text-white mb-4">🎯 What I can help you with:</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm text-gray-300">
+          {/* Footer Info - Dashboard Card Style */}
+          <div className="mt-16">
+            <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl p-8 border border-gray-200 dark:border-gray-700">
+              <h3 className="text-h2 text-gray-900 dark:text-white mb-6 text-center">🎯 What I can help you with:</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-small text-gray-600 dark:text-gray-400">
                 <div className="flex items-center justify-center space-x-2">
                   <span className="text-2xl">🎓</span>
                   <span>Career Guidance</span>
@@ -528,8 +537,8 @@ function ChatAssistant() {
                   <span>General Knowledge</span>
                 </div>
               </div>
-              <div className="mt-4 pt-4 border-t border-slate-700">
-                <p className="text-xs text-gray-400">
+              <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+                <p className="text-small text-gray-500 dark:text-gray-400 text-center">
                   Specialized in: VTA Programs • NTS Applications • German Tech • Sri Lankan Education System
                 </p>
               </div>

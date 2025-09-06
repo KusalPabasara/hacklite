@@ -274,20 +274,26 @@ const Questionnaire = () => {
   const progress = ((currentQuestion + 1) / filteredQuestions.length) * 100;
 
   return (
-    <div className="min-h-screen bg-slate-50 pt-16">
-      {/* Header */}
-      <div className="bg-white shadow-sm border-b">
-        <div className="max-w-4xl mx-auto px-4 py-8">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 pt-16">
+      {/* Hero Section - Dashboard Style */}
+      <div className="relative overflow-hidden bg-gradient-to-br from-violet-50 via-purple-50 to-indigo-50 dark:from-slate-900 dark:via-purple-900 dark:to-indigo-900">
+        <div className="absolute inset-0">
+          <div className="absolute top-20 left-20 w-96 h-96 bg-purple-400 dark:bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+          <div className="absolute bottom-20 right-20 w-96 h-96 bg-indigo-400 dark:bg-indigo-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{animationDelay: '2s'}}></div>
+          <div className="absolute -top-32 right-40 w-80 h-80 bg-violet-400 dark:bg-violet-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{animationDelay: '4s'}}></div>
+        </div>
+        
+        <div className="relative z-10 max-w-4xl mx-auto px-4 py-8">
           <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-heading-1 text-slate-900">Career Discovery Questionnaire</h1>
-              <p className="text-body text-slate-600 mt-2">Help us find the perfect career path for you</p>
+            <div className="slide-up">
+              <h1 className="text-heading-1 text-gray-800 dark:text-white">Career Discovery Questionnaire</h1>
+              <p className="text-body text-gray-600 dark:text-white/80 mt-2">Help us find the perfect career path for you</p>
             </div>
             <div className="text-right">
-              <div className="text-sm text-slate-500">Question {currentQuestion + 1} of {filteredQuestions.length}</div>
-              <div className="w-32 bg-slate-200 rounded-full h-2 mt-2">
+              <div className="text-sm text-gray-600 dark:text-white/80">Question {currentQuestion + 1} of {filteredQuestions.length}</div>
+              <div className="w-32 bg-gray-200 dark:bg-gray-600 rounded-full h-2 mt-2">
                 <div 
-                  className="bg-cyan-600 h-2 rounded-full transition-all duration-300"
+                  className="bg-gradient-to-r from-violet-500 to-indigo-500 h-2 rounded-full transition-all duration-300"
                   style={{ width: `${progress}%` }}
                 ></div>
               </div>
@@ -298,16 +304,16 @@ const Questionnaire = () => {
 
       {/* Question Content */}
       <div className="max-w-4xl mx-auto px-4 py-8">
-        <div className="professional-card p-8">
+        <div className="professional-card p-8 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-lg">
           <div className="mb-8">
-            <h2 className="text-heading-2 text-slate-900 mb-6">
+            <h2 className="text-heading-2 text-slate-900 dark:text-white mb-6">
               {question.question_text}
             </h2>
             
             {/* Show instruction for multiple selection questions */}
             {question.question_text.toLowerCase().includes('select all that apply') && (
-              <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-                <p className="text-blue-800 text-sm font-medium">
+              <div className="mb-4 p-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded-lg">
+                <p className="text-blue-800 dark:text-blue-300 text-sm font-medium">
                   💡 You can select multiple options that apply to you
                 </p>
               </div>
@@ -337,8 +343,8 @@ const Questionnaire = () => {
                         key={index}
                         className={`flex items-center p-4 rounded-lg border-2 cursor-pointer transition-all duration-200 ${
                           isSelected
-                            ? 'border-cyan-500 bg-cyan-50'
-                            : 'border-slate-200 hover:border-slate-300 hover:bg-slate-50'
+                            ? 'border-cyan-500 bg-cyan-50 dark:bg-cyan-900/20'
+                            : 'border-slate-200 dark:border-gray-600 hover:border-slate-300 dark:hover:border-gray-500 hover:bg-slate-50 dark:hover:bg-gray-700'
                         }`}
                       >
                         <input
@@ -358,7 +364,7 @@ const Questionnaire = () => {
                         <div className={`w-5 h-5 rounded border-2 mr-4 flex items-center justify-center ${
                           isSelected
                             ? 'border-cyan-500 bg-cyan-500'
-                            : 'border-slate-300'
+                            : 'border-slate-300 dark:border-gray-500'
                         }`}>
                           {isSelected && (
                             <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -367,10 +373,14 @@ const Questionnaire = () => {
                           )}
                         </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
                         <span className="text-slate-700 font-medium">{option.label}</span>
 =======
                         <span className="text-slate-700 font-medium">{option}</span>
 >>>>>>> c2fbe43 (Initial commit)
+=======
+                        <span className="text-slate-700 dark:text-gray-300 font-medium">{option}</span>
+>>>>>>> 4199d3e (feat: changed ui)
                       </label>
                     );
                   })
@@ -383,6 +393,7 @@ const Questionnaire = () => {
                   question.options.map((option, index) => (
                     <label 
                       key={index}
+<<<<<<< HEAD
                       className={`flex items-center p-4 rounded-lg border-2 cursor-pointer transition-all duration-200 ${
 <<<<<<< HEAD
                         answers[question.id] === option.value
@@ -392,6 +403,13 @@ const Questionnaire = () => {
                           ? 'border-cyan-500 bg-cyan-50'
                           : 'border-slate-200 hover:border-slate-300 hover:bg-slate-50'
                       }`}
+=======
+                                              className={`flex items-center p-4 rounded-lg border-2 cursor-pointer transition-all duration-200 ${
+                          answers[question.id] === option
+                            ? 'border-cyan-500 bg-cyan-50 dark:bg-cyan-900/20'
+                            : 'border-slate-200 dark:border-gray-600 hover:border-slate-300 dark:hover:border-gray-500 hover:bg-slate-50 dark:hover:bg-gray-700'
+                        }`}
+>>>>>>> 4199d3e (feat: changed ui)
                     >
                       <input
                         type="radio"
@@ -406,6 +424,7 @@ const Questionnaire = () => {
                         onChange={(e) => handleAnswerChange(question.id, e.target.value)}
                         className="sr-only"
                       />
+<<<<<<< HEAD
                       <div className={`w-5 h-5 rounded-full border-2 mr-4 flex items-center justify-center ${
 <<<<<<< HEAD
                         answers[question.id] === option.value
@@ -428,6 +447,18 @@ const Questionnaire = () => {
                       </div>
                       <span className="text-slate-700 font-medium">{option}</span>
 >>>>>>> c2fbe43 (Initial commit)
+=======
+                                              <div className={`w-5 h-5 rounded-full border-2 mr-4 flex items-center justify-center ${
+                          answers[question.id] === option
+                            ? 'border-cyan-500 bg-cyan-500'
+                            : 'border-slate-300 dark:border-gray-500'
+                        }`}>
+                          {answers[question.id] === option && (
+                            <div className="w-2 h-2 bg-white dark:bg-gray-200 rounded-full"></div>
+                          )}
+                      </div>
+                      <span className="text-slate-700 dark:text-gray-300 font-medium">{option}</span>
+>>>>>>> 4199d3e (feat: changed ui)
                     </label>
                   ))
                 )}
@@ -446,14 +477,14 @@ const Questionnaire = () => {
           </div>
 
           {/* Navigation */}
-          <div className="flex justify-between items-center pt-6 border-t border-slate-200">
+          <div className="flex justify-between items-center pt-6 border-t border-slate-200 dark:border-gray-600">
             <button
               onClick={handlePrevious}
               disabled={currentQuestion === 0}
               className={`professional-button px-6 py-3 ${
                 currentQuestion === 0
-                  ? 'bg-slate-100 text-slate-400 cursor-not-allowed'
-                  : 'bg-slate-200 text-slate-700 hover:bg-slate-300'
+                  ? 'bg-slate-100 dark:bg-gray-700 text-slate-400 dark:text-gray-500 cursor-not-allowed'
+                  : 'bg-slate-200 dark:bg-gray-600 text-slate-700 dark:text-gray-300 hover:bg-slate-300 dark:hover:bg-gray-500'
               }`}
             >
               Previous
@@ -478,7 +509,7 @@ const Questionnaire = () => {
                   disabled={!isCurrentQuestionAnswered()}
                   className={`professional-button px-6 py-3 ${
                     !isCurrentQuestionAnswered()
-                      ? 'bg-slate-100 text-slate-400 cursor-not-allowed'
+                      ? 'bg-slate-100 dark:bg-gray-700 text-slate-400 dark:text-gray-500 cursor-not-allowed'
                       : 'gradient-primary text-white hover:opacity-90'
                   }`}
                 >
