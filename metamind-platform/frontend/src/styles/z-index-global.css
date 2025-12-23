@@ -1,0 +1,144 @@
+/* Global Z-Index Management for Marga.lk Platform */
+
+/* =================================== 
+   Z-INDEX HIERARCHY SYSTEM
+   ===================================
+   
+   Level 1: Background/Content (0-999)
+   Level 2: Navigation (1000-1999) 
+   Level 3: Dropdowns/Modals (2000-8999)
+   Level 4: Critical UI (9000-9999)
+   Level 5: Emergency (10000+)
+*/
+
+/* ================================
+   GLOBAL OVERRIDES
+   ================================ */
+
+/* Language dropdown - highest priority */
+.language-dropdown-container {
+  z-index: 9999 !important;
+  position: relative !important;
+}
+
+.language-dropdown-menu {
+  z-index: 9999 !important;
+  position: absolute !important;
+}
+
+/* Dashboard specific language dropdown */
+.dashboard-topbar .language-dropdown-container,
+.dashboard-layout .language-dropdown-container {
+  z-index: 9999 !important;
+}
+
+.dashboard-topbar .language-dropdown-menu,
+.dashboard-layout .language-dropdown-menu {
+  z-index: 9999 !important;
+  position: absolute !important;
+}
+
+/* Navbar */
+.clean-navbar {
+  z-index: 1000 !important;
+}
+
+/* Dashboard sidebar */
+.dashboard-sidebar {
+  z-index: 500 !important;
+}
+
+/* Dashboard topbar */
+.dashboard-topbar {
+  z-index: 600 !important;
+}
+
+/* Mobile menu overlay */
+.mobile-menu-overlay,
+.mobile-menu-bg {
+  z-index: 999 !important;
+}
+
+/* Profile dropdown */
+.profile-dropdown {
+  z-index: 2000 !important;
+}
+
+.profile-menu {
+  z-index: 2001 !important;
+}
+
+/* Theme toggle dropdown */
+.theme-dropdown,
+.theme-menu {
+  z-index: 2500 !important;
+}
+
+/* Modal elements */
+.modal-backdrop {
+  z-index: 8000 !important;
+}
+
+.modal,
+.modal-content {
+  z-index: 8001 !important;
+}
+
+/* Toast notifications */
+.toast,
+.notification {
+  z-index: 9500 !important;
+}
+
+/* ================================
+   MOBILE SPECIFIC FIXES
+   ================================ */
+
+@media (max-width: 768px) {
+  .language-dropdown-menu {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 9999 !important;
+    width: 280px !important;
+    max-width: 90vw !important;
+  }
+  
+  .language-backdrop,
+  .language-dropdown-container .fixed.inset-0 {
+    z-index: 9998 !important;
+  }
+  
+  .dashboard-sidebar {
+    z-index: 800 !important;
+  }
+  
+  .mobile-menu-button {
+    z-index: 900 !important;
+  }
+}
+
+/* ================================
+   UTILITY CLASSES
+   ================================ */
+
+.z-top {
+  z-index: 9999 !important;
+}
+
+.z-above-all {
+  z-index: 10000 !important;
+}
+
+.z-modal {
+  z-index: 8000 !important;
+}
+
+.z-dropdown {
+  z-index: 3000 !important;
+}
+
+.z-nav {
+  z-index: 1000 !important;
+}

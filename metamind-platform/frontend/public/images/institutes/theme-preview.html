@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Institute Theme Preview</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #1f2937;
+            color: white;
+            padding: 20px;
+        }
+        .theme-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .theme-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .theme-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .theme-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+        .theme-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #1f2937;
+            margin: 0;
+        }
+        .theme-subtitle {
+            font-size: 14px;
+            color: #6b7280;
+            margin: 0;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 12px 0;
+        }
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+        .color-info {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        .color-swatch {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            border: 1px solid #d1d5db;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center; margin-bottom: 30px;">🏛️ Institute Theme Preview</h1>
+    
+    <div class="theme-grid">
+        <!-- NTS -->
+        <div class="theme-card">
+            <div class="theme-header">
+                <div class="theme-icon" style="background-color: #DBEAFE; color: #2563EB;">🏥</div>
+                <div>
+                    <div class="theme-title">NTS - Nursing Training School</div>
+                    <div class="theme-subtitle">NTS Blue Theme</div>
+                </div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 85%; background-color: #2563EB;"></div>
+            </div>
+            <div class="color-info">
+                <div class="color-swatch" style="background-color: #2563EB;" title="Primary"></div>
+                <div class="color-swatch" style="background-color: #1D4ED8;" title="Secondary"></div>
+                <div class="color-swatch" style="background-color: #DBEAFE;" title="Light"></div>
+                <div class="color-swatch" style="background-color: #1E3A8A;" title="Dark"></div>
+            </div>
+        </div>
+
+        <!-- VTA -->
+        <div class="theme-card">
+            <div class="theme-header">
+                <div class="theme-icon" style="background-color: #D1FAE5; color: #059669;">⚙️</div>
+                <div>
+                    <div class="theme-title">VTA - Vocational Training Authority</div>
+                    <div class="theme-subtitle">VTA Green Theme</div>
+                </div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 78%; background-color: #059669;"></div>
+            </div>
+            <div class="color-info">
+                <div class="color-swatch" style="background-color: #059669;" title="Primary"></div>
+                <div class="color-swatch" style="background-color: #047857;" title="Secondary"></div>
+                <div class="color-swatch" style="background-color: #D1FAE5;" title="Light"></div>
+                <div class="color-swatch" style="background-color: #064E3B;" title="Dark"></div>
+            </div>
+        </div>
+
+        <!-- German Tech -->
+        <div class="theme-card">
+            <div class="theme-header">
+                <div class="theme-icon" style="background-color: #FEE2E2; color: #7C2D12;">🇩🇪</div>
+                <div>
+                    <div class="theme-title">German Technical Training</div>
+                    <div class="theme-subtitle">German Red Theme</div>
+                </div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 72%; background-color: #7C2D12;"></div>
+            </div>
+            <div class="color-info">
+                <div class="color-swatch" style="background-color: #7C2D12;" title="Primary"></div>
+                <div class="color-swatch" style="background-color: #991B1B;" title="Secondary"></div>
+                <div class="color-swatch" style="background-color: #FEE2E2;" title="Light"></div>
+                <div class="color-swatch" style="background-color: #7F1D1D;" title="Dark"></div>
+            </div>
+        </div>
+
+        <!-- Agricultural Engineering -->
+        <div class="theme-card">
+            <div class="theme-header">
+                <div class="theme-icon" style="background-color: #DCFCE7; color: #16A34A;">🌾</div>
+                <div>
+                    <div class="theme-title">Agricultural Engineering</div>
+                    <div class="theme-subtitle">Agriculture Green Theme</div>
+                </div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 68%; background-color: #16A34A;"></div>
+            </div>
+            <div class="color-info">
+                <div class="color-swatch" style="background-color: #16A34A;" title="Primary"></div>
+                <div class="color-swatch" style="background-color: #15803D;" title="Secondary"></div>
+                <div class="color-swatch" style="background-color: #DCFCE7;" title="Light"></div>
+                <div class="color-swatch" style="background-color: #14532D;" title="Dark"></div>
+            </div>
+        </div>
+
+        <!-- Medical Officer -->
+        <div class="theme-card">
+            <div class="theme-header">
+                <div class="theme-icon" style="background-color: #FEE2E2; color: #DC2626;">⚕️</div>
+                <div>
+                    <div class="theme-title">Medical Officer (MO)</div>
+                    <div class="theme-subtitle">Medical Red Theme</div>
+                </div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 75%; background-color: #DC2626;"></div>
+            </div>
+            <div class="color-info">
+                <div class="color-swatch" style="background-color: #DC2626;" title="Primary"></div>
+                <div class="color-swatch" style="background-color: #B91C1C;" title="Secondary"></div>
+                <div class="color-swatch" style="background-color: #FEE2E2;" title="Light"></div>
+                <div class="color-swatch" style="background-color: #991B1B;" title="Dark"></div>
+            </div>
+        </div>
+
+        <!-- CA -->
+        <div class="theme-card">
+            <div class="theme-header">
+                <div class="theme-icon" style="background-color: #EDE9FE; color: #7C3AED;">💼</div>
+                <div>
+                    <div class="theme-title">Chartered Accountancy (CA)</div>
+                    <div class="theme-subtitle">CA Purple Theme</div>
+                </div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 65%; background-color: #7C3AED;"></div>
+            </div>
+            <div class="color-info">
+                <div class="color-swatch" style="background-color: #7C3AED;" title="Primary"></div>
+                <div class="color-swatch" style="background-color: #6D28D9;" title="Secondary"></div>
+                <div class="color-swatch" style="background-color: #EDE9FE;" title="Light"></div>
+                <div class="color-swatch" style="background-color: #4C1D95;" title="Dark"></div>
+            </div>
+        </div>
+
+        <!-- Teacher Training -->
+        <div class="theme-card">
+            <div class="theme-header">
+                <div class="theme-icon" style="background-color: #FED7AA; color: #EA580C;">🎓</div>
+                <div>
+                    <div class="theme-title">Teacher Training College</div>
+                    <div class="theme-subtitle">Education Orange Theme</div>
+                </div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 70%; background-color: #EA580C;"></div>
+            </div>
+            <div class="color-info">
+                <div class="color-swatch" style="background-color: #EA580C;" title="Primary"></div>
+                <div class="color-swatch" style="background-color: #C2410C;" title="Secondary"></div>
+                <div class="color-swatch" style="background-color: #FED7AA;" title="Light"></div>
+                <div class="color-swatch" style="background-color: #9A3412;" title="Dark"></div>
+            </div>
+        </div>
+
+        <!-- DTET -->
+        <div class="theme-card">
+            <div class="theme-header">
+                <div class="theme-icon" style="background-color: #CFFAFE; color: #0891B2;">📚</div>
+                <div>
+                    <div class="theme-title">DTET Open University</div>
+                    <div class="theme-subtitle">DTET Cyan Theme</div>
+                </div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 60%; background-color: #0891B2;"></div>
+            </div>
+            <div class="color-info">
+                <div class="color-swatch" style="background-color: #0891B2;" title="Primary"></div>
+                <div class="color-swatch" style="background-color: #0E7490;" title="Secondary"></div>
+                <div class="color-swatch" style="background-color: #CFFAFE;" title="Light"></div>
+                <div class="color-swatch" style="background-color: #164E63;" title="Dark"></div>
+            </div>
+        </div>
+
+        <!-- Open University SL -->
+        <div class="theme-card">
+            <div class="theme-header">
+                <div class="theme-icon" style="background-color: #F3E8FF; color: #9333EA;">🎓</div>
+                <div>
+                    <div class="theme-title">Open University Sri Lanka</div>
+                    <div class="theme-subtitle">Open Uni Violet Theme</div>
+                </div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 55%; background-color: #9333EA;"></div>
+            </div>
+            <div class="color-info">
+                <div class="color-swatch" style="background-color: #9333EA;" title="Primary"></div>
+                <div class="color-swatch" style="background-color: #7C2D12;" title="Secondary"></div>
+                <div class="color-swatch" style="background-color: #F3E8FF;" title="Light"></div>
+                <div class="color-swatch" style="background-color: #581C87;" title="Dark"></div>
+            </div>
+        </div>
+
+        <!-- Korean Employment -->
+        <div class="theme-card">
+            <div class="theme-header">
+                <div class="theme-icon" style="background-color: #F3F4F6; color: #1F2937;">🇰🇷</div>
+                <div>
+                    <div class="theme-title">Korean Employment Program</div>
+                    <div class="theme-subtitle">Korean Navy Theme</div>
+                </div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 50%; background-color: #1F2937;"></div>
+            </div>
+            <div class="color-info">
+                <div class="color-swatch" style="background-color: #1F2937;" title="Primary"></div>
+                <div class="color-swatch" style="background-color: #111827;" title="Secondary"></div>
+                <div class="color-swatch" style="background-color: #F3F4F6;" title="Light"></div>
+                <div class="color-swatch" style="background-color: #030712;" title="Dark"></div>
+            </div>
+        </div>
+
+        <!-- BIT -->
+        <div class="theme-card">
+            <div class="theme-header">
+                <div class="theme-icon" style="background-color: #E0F2FE; color: #0EA5E9;">💻</div>
+                <div>
+                    <div class="theme-title">BIT - Bachelor of Information Technology</div>
+                    <div class="theme-subtitle">BIT Blue Theme</div>
+                </div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 45%; background-color: #0EA5E9;"></div>
+            </div>
+            <div class="color-info">
+                <div class="color-swatch" style="background-color: #0EA5E9;" title="Primary"></div>
+                <div class="color-swatch" style="background-color: #0284C7;" title="Secondary"></div>
+                <div class="color-swatch" style="background-color: #E0F2FE;" title="Light"></div>
+                <div class="color-swatch" style="background-color: #0C4A6E;" title="Dark"></div>
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px; padding: 20px; background: #374151; border-radius: 8px; max-width: 800px; margin-left: auto; margin-right: auto;">
+        <h3>🎨 Theme Features</h3>
+        <p>Each institute now has its own unique color theme that reflects their branding and logo colors. The themes include:</p>
+        <ul style="text-align: left; display: inline-block;">
+            <li>Primary color for progress bars and accents</li>
+            <li>Secondary color for hover states</li>
+            <li>Light color for icon backgrounds</li>
+            <li>Dark color for text and borders</li>
+            <li>Representative emoji icon</li>
+        </ul>
+    </div>
+</body>
+</html>

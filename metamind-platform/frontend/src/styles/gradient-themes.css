@@ -1,0 +1,413 @@
+/* ===== ENHANCED GRADIENT THEME SYSTEM ===== */
+
+/* Light Theme - Bright and Distinct Professional */
+:root,
+body.light-theme {
+  /* Primary Background Gradients - Bright and Clean */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #f1f5f9;
+  --bg-card: #ffffff;
+  --bg-header: #ffffff;
+  --bg-sidebar: #f8fafc;
+  --bg-modal: #ffffff;
+  
+  /* Professional Interactive Gradients */
+  --bg-button: #3b82f6;
+  --bg-button-hover: #2563eb;
+  --bg-button-secondary: #f1f5f9;
+  --bg-button-secondary-hover: #e2e8f0;
+  
+  /* Enterprise-Grade Accent Gradients */
+  --gradient-primary: linear-gradient(135deg, #1e40af 0%, #3730a3 100%);
+  --gradient-secondary: linear-gradient(135deg, #059669 0%, #047857 100%);
+  --gradient-success: linear-gradient(135deg, #059669 0%, #065f46 100%);
+  --gradient-warning: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+  --gradient-error: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  --gradient-info: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  
+  /* Professional Business Gradients */
+  --gradient-corporate: linear-gradient(135deg, #1e40af 0%, #3730a3 100%);
+  --gradient-enterprise: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+  --gradient-professional: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  --gradient-business: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+  --gradient-executive: linear-gradient(135deg, #374151 0%, #111827 100%);
+  
+  /* Hover and Interactive States - Light Mode */
+  --hover-bg: #f1f5f9;
+  --hover-bg-secondary: #e2e8f0;
+  --active-bg: #e2e8f0;
+  --selected-bg: #dbeafe;
+  
+  /* Light Mode Specific Colors */
+  --bg-light-card: #ffffff;
+  --bg-light-surface: #f8fafc;
+  --bg-light-elevated: #ffffff;
+  --text-light-primary: #0f172a;
+  --text-light-secondary: #334155;
+  --border-light-primary: #e2e8f0;
+  --border-light-secondary: #cbd5e1;
+  
+  /* Text Colors - High Contrast for Light Mode */
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-tertiary: #64748b;
+  --text-gradient-primary: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  --text-gradient-accent: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  --text-on-dark: #ffffff;
+  --border-light: #ffffff;
+  
+  /* Accent Colors */
+  --accent-blue: #3b82f6;
+  --accent-orange: #f59e0b;
+  --accent-yellow: #fbbf24;
+  --accent-green: #10b981;
+  --accent-red: #ef4444;
+  --accent-purple: #8b5cf6;
+  
+  /* Border Colors */
+  --border-primary: #e2e8f0;
+  --border-secondary: #cbd5e1;
+  --border-focus: #3b82f6;
+  
+  /* Additional Theme Variables */
+  --text-inverse: #ffffff;
+  --bg-input: #ffffff;
+  --focus-ring: rgba(59, 130, 246, 0.1);
+  
+  /* Enhanced Shadows with depth */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --shadow-colored: 0 10px 15px -3px rgba(59, 130, 246, 0.1), 0 4px 6px -2px rgba(59, 130, 246, 0.05);
+}
+
+/* Dark Theme - Deep and Rich Professional */
+body.dark-theme {
+  /* Professional Dark Background Gradients */
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+  --bg-card: #1e293b;
+  --bg-header: #0f172a;
+  --bg-sidebar: #1e293b;
+  --bg-modal: #1e293b;
+  
+  /* Professional Dark Interactive Gradients */
+  --bg-button: #3b82f6;
+  --bg-button-hover: #2563eb;
+  --bg-button-secondary: #334155;
+  --bg-button-secondary-hover: #475569;
+  
+  /* Enterprise Dark Accent Gradients */
+  --gradient-primary: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+  --gradient-secondary: linear-gradient(135deg, #059669 0%, #10b981 100%);
+  --gradient-success: linear-gradient(135deg, #059669 0%, #10b981 100%);
+  --gradient-warning: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
+  --gradient-error: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+  --gradient-info: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%);
+  
+  /* Professional Dark Business Gradients */
+  --gradient-corporate: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+  --gradient-enterprise: linear-gradient(135deg, #374151 0%, #4b5563 100%);
+  --gradient-professional: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  --gradient-business: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  --gradient-executive: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+  
+  /* Hover and Interactive States */
+  --hover-bg: #334155;
+  --hover-bg-secondary: #475569;
+  --active-bg: #475569;
+  --selected-bg: #1e3a8a;
+  
+  /* Text Colors - High Contrast for Dark Mode */
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-tertiary: #94a3b8;
+  --text-gradient-primary: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  --text-gradient-accent: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+  --text-on-dark: #f8fafc;
+  --border-light: #ffffff;
+  
+  /* Dark Mode Specific Colors */
+  --bg-dark-card: #1e293b;
+  --bg-dark-surface: #0f172a;
+  --bg-dark-elevated: #334155;
+  --text-dark-primary: #f8fafc;
+  --text-dark-secondary: #cbd5e1;
+  --border-dark-primary: #374151;
+  --border-dark-secondary: #4b5563;
+  
+  /* Accent Colors */
+  --accent-blue: #60a5fa;
+  --accent-orange: #fbbf24;
+  --accent-yellow: #fde047;
+  --accent-green: #34d399;
+  --accent-red: #f87171;
+  --accent-purple: #a78bfa;
+  
+  /* Border Colors */
+  --border-primary: #374151;
+  --border-secondary: #4b5563;
+  --border-focus: #60a5fa;
+  
+  /* Additional Theme Variables */
+  --text-inverse: #ffffff;
+  --bg-input: #374151;
+  --focus-ring: rgba(96, 165, 250, 0.1);
+  
+  /* Enhanced Dark Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  --shadow-colored: 0 10px 15px -3px rgba(59, 130, 246, 0.2), 0 4px 6px -2px rgba(59, 130, 246, 0.1);
+}
+
+/* ===== ENHANCED COMPONENT STYLES ===== */
+
+/* Professional Language Toggle */
+.professional-language-toggle {
+  background: var(--bg-button-secondary);
+  position: relative;
+}
+
+/* Language Dropdown Styling */
+.language-dropdown {
+  background: var(--bg-card) !important;
+  backdrop-filter: blur(12px);
+  border: 2px solid var(--border-primary) !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+}
+
+.language-dropdown-header {
+  background: var(--bg-tertiary) !important;
+  border-bottom: 1px solid var(--border-primary) !important;
+}
+
+.language-dropdown-item {
+  background: transparent !important;
+  color: var(--text-primary) !important;
+  transition: all 0.2s ease;
+}
+
+.language-dropdown-item:hover {
+  background: var(--hover-bg) !important;
+  color: var(--text-primary) !important;
+}
+
+.language-dropdown-item.selected {
+  background: var(--selected-bg) !important;
+  color: var(--accent-blue) !important;
+}
+
+.language-dropdown-footer {
+  background: var(--bg-tertiary) !important;
+  border-top: 1px solid var(--border-primary) !important;
+}
+
+/* Professional Enterprise Cards */
+.gradient-card {
+  background: var(--bg-card);
+  border-radius: 0.75rem;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-primary);
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.gradient-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--gradient-corporate);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.gradient-card:hover::before {
+  opacity: 1;
+}
+
+.gradient-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-focus);
+}
+
+/* Professional Enterprise Buttons */
+.btn-gradient-primary {
+  background: var(--gradient-corporate);
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.025em;
+  transition: all 0.2s ease;
+  position: relative;
+  text-transform: uppercase;
+}
+
+.btn-gradient-primary:hover {
+  background: var(--gradient-business);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-gradient-primary:active {
+  transform: translateY(0);
+}
+
+.btn-gradient-secondary {
+  background: var(--gradient-enterprise);
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.025em;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+}
+
+.btn-gradient-secondary:hover {
+  background: var(--gradient-professional);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Professional Theme Toggle */
+.enhanced-theme-toggle {
+  width: 44px;
+  height: 44px;
+  border-radius: 0.5rem;
+  background: var(--bg-button-secondary);
+  border: 1px solid var(--border-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.enhanced-theme-toggle:hover {
+  background: var(--hover-bg);
+  border-color: var(--border-focus);
+  box-shadow: var(--shadow-sm);
+}
+
+.enhanced-theme-toggle:active {
+  transform: scale(0.98);
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: var(--text-gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+}
+
+/* Professional Static Background */
+.professional-bg {
+  background: var(--bg-primary);
+  transition: background 0.3s ease;
+}
+
+/* Professional Input Fields */
+.professional-input {
+  background: var(--bg-input);
+  border: 1px solid var(--border-primary);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  transition: all 0.2s ease;
+  font-size: 0.875rem;
+}
+
+.professional-input:focus {
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px var(--focus-ring);
+  outline: none;
+}
+
+/* Professional Navbar */
+.professional-navbar {
+  background: var(--bg-header);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Professional Footer */
+.professional-footer {
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-primary);
+}
+
+/* Professional Sidebar */
+.professional-sidebar {
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Loading States */
+.gradient-skeleton {
+  background: linear-gradient(90deg, var(--bg-secondary) 25%, var(--hover-bg) 50%, var(--bg-secondary) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .enhanced-theme-toggle {
+    width: 44px;
+    height: 44px;
+  }
+  
+  .professional-language-toggle {
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+/* High contrast mode adjustments */
+@media (prefers-contrast: high) {
+  .gradient-card,
+  .professional-language-toggle,
+  .enhanced-theme-toggle {
+    border-width: 3px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .animated-bg {
+    animation: none;
+  }
+  
+  .gradient-skeleton {
+    animation: none;
+  }
+  
+  .professional-language-toggle::before,
+  .enhanced-theme-toggle::before,
+  .btn-gradient-primary::before {
+    transition: none;
+  }
+}

@@ -1,0 +1,256 @@
+/* Theme-aware logo styles for Marga.lk */
+
+/* Logo container base styles */
+.logo-container {
+  transition: all 0.3s ease-in-out;
+  position: relative;
+}
+
+/* Logo wrapper */
+.logo-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Light mode logo colors and effects */
+.logo-container .logo-primary,
+:root .logo-primary {
+  fill: #2563eb; /* Blue primary */
+  transition: fill 0.3s ease;
+}
+
+.logo-container .logo-secondary,
+:root .logo-secondary {
+  fill: #1e40af; /* Dark blue */
+  transition: fill 0.3s ease;
+}
+
+.logo-container .logo-accent,
+:root .logo-accent {
+  fill: #3b82f6; /* Medium blue */
+  transition: fill 0.3s ease;
+}
+
+.logo-container .logo-text,
+:root .logo-text {
+  fill: #1f2937; /* Dark gray text */
+  transition: fill 0.3s ease;
+}
+
+/* Dark mode logo colors and effects */
+.dark .logo-container .logo-primary,
+.dark .logo-primary {
+  fill: #ec4899; /* Pink primary */
+}
+
+.dark .logo-container .logo-secondary,
+.dark .logo-secondary {
+  fill: #be185d; /* Dark pink */
+}
+
+.dark .logo-container .logo-accent,
+.dark .logo-accent {
+  fill: #f472b6; /* Light pink */
+}
+
+.dark .logo-container .logo-text,
+.dark .logo-text {
+  fill: #f9fafb; /* Light text */
+}
+
+/* Logo gradient backgrounds */
+.logo-gradient-bg {
+  background: linear-gradient(135deg, 
+    rgba(37, 99, 235, 0.1) 0%, 
+    rgba(59, 130, 246, 0.15) 50%, 
+    rgba(30, 64, 175, 0.1) 100%);
+  transition: background 0.3s ease;
+}
+
+.dark .logo-gradient-bg {
+  background: linear-gradient(135deg, 
+    rgba(236, 72, 153, 0.1) 0%, 
+    rgba(244, 114, 182, 0.15) 50%, 
+    rgba(190, 24, 93, 0.1) 100%);
+}
+
+/* Logo hover effects */
+.logo-container:hover {
+  transform: scale(1.02);
+  transition: transform 0.2s ease-in-out;
+}
+
+.logo-container:hover img {
+  filter: brightness(1.2) contrast(1.1) saturate(1.1);
+}
+
+/* Glow effect on hover */
+.logo-container .logo-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  opacity: 0;
+  z-index: -1;
+  filter: blur(8px);
+  transition: opacity 0.3s ease;
+}
+
+.dark .logo-container .logo-wrapper::before {
+  background: linear-gradient(135deg, #f472b6, #ec4899);
+}
+
+.logo-container:hover .logo-wrapper::before {
+  opacity: 0.2;
+}
+
+/* Logo sizing variants */
+.logo-small {
+  max-height: 24px;
+  width: auto;
+}
+
+.logo-default {
+  max-height: 32px;
+  width: auto;
+}
+
+.logo-large {
+  max-height: 48px;
+  width: auto;
+}
+
+/* Responsive logo sizing */
+@media (max-width: 768px) {
+  .logo-container {
+    transform: scale(0.9);
+  }
+  
+  .logo-container:hover {
+    transform: scale(0.92);
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-container {
+    transform: scale(0.8);
+  }
+  
+  .logo-container:hover {
+    transform: scale(0.82);
+  }
+}
+
+/* Smooth transitions for theme changes */
+.theme-transition {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, fill 0.3s ease;
+}
+
+/* Logo animation on page load */
+@keyframes logoFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.logo-container {
+  animation: logoFadeIn 0.6s ease-out;
+}
+
+/* Logo pulse animation for loading states */
+@keyframes logoPulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.logo-loading {
+  animation: logoPulse 2s infinite;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .logo-container .logo-primary,
+  .logo-container .logo-secondary,
+  .logo-container .logo-accent {
+    fill: #000000;
+  }
+  
+  .dark .logo-container .logo-primary,
+  .dark .logo-container .logo-secondary,
+  .dark .logo-container .logo-accent {
+    fill: #ffffff;
+  }
+  
+  .logo-container .logo-wrapper::before {
+    display: none;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .logo-container,
+  .theme-transition,
+  .logo-container img,
+  .logo-container svg,
+  .logo-container .logo-wrapper::before {
+    transition: none;
+    animation: none;
+  }
+  
+  .logo-container:hover {
+    transform: none;
+  }
+  
+  .logo-container:hover img {
+    filter: none;
+  }
+}
+
+/* Focus styles for accessibility */
+.logo-container:focus,
+.logo-container a:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.dark .logo-container:focus,
+.dark .logo-container a:focus {
+  outline-color: #f472b6;
+}
+
+/* Logo variants for different contexts */
+.navbar-logo .logo-container {
+  max-height: 40px;
+}
+
+.footer-logo .logo-container {
+  max-height: 32px;
+  opacity: 0.8;
+}
+
+.hero-logo .logo-container {
+  max-height: 64px;
+}
+
+/* Print styles */
+@media print {
+  .logo-container {
+    filter: grayscale(1);
+  }
+  
+  .logo-container .logo-wrapper::before {
+    display: none;
+  }
+}
